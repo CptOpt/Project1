@@ -1,9 +1,12 @@
 package cogentdatasolutions.project1;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,20 +32,23 @@ import java.net.URL;
  */
 public class Register extends Fragment {
     private static final String TAG = Register.class.getSimpleName();
-    private static final String PACKAGE = "com.cogentdatasolutions.project1";
-    Button register;
-    JSONObject jsonObject1=null;
+    private Button register;
+    private JSONObject jsonObject1,jsonObject2 = null;
+    private HttpURLConnection connection = null;
+    private BufferedReader bufferedReader = null;
+    private InputStream inputStream = null;
+    URL url = null;
 
 
-    EditText fullanme,emailAddress, password1, password2;
-    String name,mail,password,confrmpaswrd;
+    EditText fullanme, emailAddress, password1, password2;
+    String name, mail, password, confrmpaswrd;
+    String finalJson;
 
-    //ImageButton ln_login,fb_login;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.register,container,false);
+        final View view = inflater.inflate(R.layout.register, container, false);
         fullanme = (EditText) view.findViewById(R.id.fullname);
         emailAddress = (EditText) view.findViewById(R.id.emailAddress);
         password1 = (EditText) view.findViewById(R.id.password1);
@@ -52,54 +59,44 @@ public class Register extends Fragment {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              // register.setVisibility(View.GONE);
-                 name=fullanme.getText().toString();
-                mail=emailAddress.getText().toString();
-                password=password1.getText().toString();
-                confrmpaswrd=password2.getText().toString();
+                name = fullanme.getText().toString();
+                mail = emailAddress.getText().toString();
+                password = password1.getText().toString();
+                confrmpaswrd = password2.getText().toString();
 
-                if(emailAddress.length()==0 && password1.length()==0 && password2.length()==0 && fullanme.length()==0){
+                if (emailAddress.length() == 0 && password1.length() == 0 && password2.length() == 0 && fullanme.length() == 0) {
                     fullanme.setError("FullName cannot be Blank");
                     emailAddress.setError("Email Id required for registration");
                     password1.setError("Password required");
                     password2.setError("password required");
-                } else if(!Patterns.EMAIL_ADDRESS.matcher(emailAddress.getText().toString()).matches()){
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(emailAddress.getText().toString()).matches()) {
                     emailAddress.setError("Invalid Email Id");
-                }else if (password.length()<8||password.length()>15){
+                } else if (password.length() < 8 || password.length() > 15) {
                     password1.setError("password should be 8-15 charactes");
                     password2.setError("password should be 8-15 charactes");
-                }else  if (!password.trim().equals(confrmpaswrd.trim())){
+                } else if (!password.trim().equals(confrmpaswrd.trim())) {
                     password1.setError("password and confirm password must be same");
-                }else {
+                } else {
 
                     new JSONTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/registration");
 
-                    Toast.makeText(getActivity(), "Registering.....", Toast.LENGTH_SHORT).show();
+
                 }
 
             }
         });
 
-//        ln_login = (ImageButton) view.findViewById(R.id.ln_login);
-//        ln_login.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                login_linkedin();
-//            }
-//        });
-//
         return view;
     }
 
 
-    public class JSONTask extends AsyncTask<String, String, String> {
+    private class JSONTask extends AsyncTask<String, String, String> {
 
 
         @Override
         protected String doInBackground(String... params) {
 
-            HttpURLConnection connection = null;
-            BufferedReader bufferedReader = null;
+
 
             try {
 
@@ -107,52 +104,65 @@ public class Register extends Fragment {
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
 
-
                 connection.setRequestMethod("POST");
                 jsonObject1 = new JSONObject();
-                jsonObject1.put("Full Name", "" + name);
-                jsonObject1.put("Email", "" + mail);
-                jsonObject1.put("Password", "" + password);
+                jsonObject1.put("name", "" + name);
+                jsonObject1.put("mail", "" + mail);
+                jsonObject1.put("password", "" + password);
+                jsonObject1.put("conpassword", "" + confrmpaswrd);
 
 
-                jsonObject1.toString().trim();
+                String jsonObj = jsonObject1.toString();
+                Log.e(TAG, "doInBackground: " + jsonObj);
                 //Header
-                //connection.setRequestProperty("jsonobject",""+jsonObject1.toString());
-                connection.setRequestProperty("registerObject", "" + jsonObject1);
+                connection.setRequestProperty("registerObject", "" + jsonObj);
                 connection.connect();
-                InputStream inputStream = connection.getInputStream();
+                inputStream = connection.getInputStream();
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-                StringBuffer buffer = new StringBuffer();
+                StringBuilder buffer = new StringBuilder();
 
-                String line = "";
+                String line;
 
                 while ((line = bufferedReader.readLine()) != null) {
                     buffer.append(line);
                 }
 
-                return buffer.toString();
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+                finalJson = buffer.toString();
+                Log.e(TAG, "JSON Object" + finalJson);
+
+
+                return finalJson;
+
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             } finally {
                 if (connection != null) {
                     connection.disconnect();
                 }
-                try {
-                    bufferedReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
-
-
             return null;
         }
 
+        @Override
+        protected void onPostExecute(String result) {
+            if (finalJson != null) {
+                try {
+                    JSONObject jobj = new JSONObject(finalJson);
+                    Log.e(TAG, "Response Json: " + jobj);
+                    String str = (String) jobj.get("status");
+                    if (str.equals("true")) {
+                        Toast.makeText(getContext(), "Registration Success", Toast.LENGTH_SHORT).show();
+
+                    } else
+                        Toast.makeText(getContext(), "Registration Failed", Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            super.onPostExecute(result);
+        }
     }
-    }
+
+}

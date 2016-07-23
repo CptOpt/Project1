@@ -66,8 +66,10 @@ public class Profile extends Fragment {
         });
         editpf.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent i=new Intent(getActivity(),EditDetails.class);
+                startActivity(i);
             }
         });
      //   signout.setVisibility(View.VISIBLE);

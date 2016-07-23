@@ -21,7 +21,9 @@
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:id="@+id/addrline"
+          android:gravity="center"
           android:hint="AddressLine"
+          android:textSize="15dp"
           android:layout_marginBottom="10dp"
           android:layout_below="@+id/txt"
           android:background="@drawable/edittxtstyles"/>
@@ -29,6 +31,8 @@
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:id="@+id/streetname"
+          android:textSize="15dp"
+          android:gravity="center"
           android:hint="StreetName"
           android:background="@drawable/edittxtstyles"
           android:layout_marginBottom="10dp"
@@ -53,7 +57,7 @@
             android:layout_marginBottom="10dp"
             android:text="State   "/>
         <Spinner
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/statespinner"
             android:layout_gravity="center_vertical"
@@ -98,8 +102,10 @@
     android:layout_height="40dp"
     android:hint="pincode"
     android:id="@+id/pincode"
+    android:gravity="center"
     android:layout_marginBottom="25dp"
     android:background="@drawable/edittxtstyles"
+    android:textSize="15dp"
     android:layout_below="@id/countrylayout"/>
 
 
@@ -120,6 +126,8 @@
           android:layout_height="40dp"
           android:id="@+id/addrline1"
           android:hint="AddressLine"
+          android:textSize="15dp"
+          android:gravity="center"
           android:layout_marginBottom="10dp"
           android:layout_below="@+id/txt1"
           android:background="@drawable/edittxtstyles"/>
@@ -127,7 +135,9 @@
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:id="@+id/streetname1"
+          android:textSize="15dp"
           android:hint="StreetName"
+          android:gravity="center"
           android:background="@drawable/edittxtstyles"
           android:layout_marginBottom="10dp"
           android:layout_below="@+id/addrline1"
@@ -151,7 +161,7 @@
               android:layout_marginBottom="10dp"
               android:text="State   "/>
           <Spinner
-              android:layout_width="wrap_content"
+              android:layout_width="match_parent"
               android:layout_height="40dp"
               android:id="@+id/statespinner1"
               android:layout_gravity="center_vertical"
@@ -196,31 +206,17 @@
           android:layout_height="40dp"
           android:hint="pincode"
           android:id="@+id/pincode1"
+          android:gravity="center"
+          android:textSize="15dp"
           android:layout_marginBottom="20dp"
           android:background="@drawable/edittxtstyles"
           android:layout_below="@id/countrylayout1"/>
-
-      <Button
-          android:layout_width="match_parent"
-          android:layout_height="40dp"
-          android:id="@+id/uploadresume"
-          android:layout_below="@id/pincode1"
-          android:text="UploadResume"/>
-      <Button
-          android:layout_width="match_parent"
-          android:layout_height="40dp"
-          android:id="@+id/uploadpic"
-          android:layout_marginBottom="20dp"
-          android:text="Upload Profile image"
-          android:layout_below="@id/uploadresume"/>
-
-
 
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:id="@+id/savechanges"
-    android:layout_below="@id/uploadpic"
+    android:layout_below="@id/pincode1"
     android:orientation="horizontal"
     android:gravity="center_horizontal">
     <Button
