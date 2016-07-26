@@ -39,6 +39,7 @@
                 android:id="@+id/editimage"
                 android:drawableLeft="@drawable/edit"
                 android:layout_marginBottom="5dp"
+                android:background="#ffffff"
                 android:layout_alignParentBottom="true"
                 android:layout_alignRight="@+id/profilepic"
                 android:layout_alignEnd="@+id/profilepic"
