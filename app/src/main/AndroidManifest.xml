@@ -41,6 +41,8 @@
 
 <activity android:name=".EditDetails"></activity>
         <activity android:name=".EditAddress"></activity>
+        <activity android:name=".Myprofile"/>
+        <activity android:name=".Changepassword"/>
 
 <!--<activity an-->
     </application>

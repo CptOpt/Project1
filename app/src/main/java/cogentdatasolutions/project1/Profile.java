@@ -16,19 +16,26 @@ import android.widget.Button;
  * Created by Divya on 6/13/2016.
  */
 public class Profile extends Fragment {
-    Button resume,signin,signout,editpf,recommended,tc,policy;
+    Button profile,signin,signout,editpf,recommended,tc,policy;
     View v;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.profile,container,false);
       //  Animation animation1 = AnimationUtils.loadAnimation(getContext(),R.anim.popup);
-        resume=(Button)view.findViewById(R.id.resume);
+        profile=(Button)view.findViewById(R.id.myprofile);
         editpf=(Button)view.findViewById(R.id.editprofile);
         recommended=(Button)view.findViewById(R.id.recmnd);
         tc=(Button)view.findViewById(R.id.tC);
         policy=(Button)view.findViewById(R.id.privacy);
         signin=(Button)view.findViewById(R.id.Sign);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(),Myprofile.class);
+                startActivity(i);
+            }
+        });
        // signout=(Button)view.findViewById(R.id.Signout);
        signin.setTag(1);
         signin.setText("SignIn");

@@ -1,8 +1,10 @@
 package cogentdatasolutions.project1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -77,6 +79,12 @@ public class Register extends Fragment {
                 } else if (!password.trim().equals(confrmpaswrd.trim())) {
                     password1.setError("password and confirm password must be same");
                 } else {
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("EMAILID",mail);
+                    editor.commit();
+                    String str=preferences.getString("EMAILID","");
+                    Log.e(TAG, "Preferences string: "+str );
 
                     new JSONTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/registration");
 

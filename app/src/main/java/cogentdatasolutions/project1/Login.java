@@ -292,7 +292,7 @@ public class Login extends Fragment {
                     String str=jsonobj.getString("status");
                     if (str.equals("true"))
                     {
-                     Toast.makeText(getActivity(),"send",Toast.LENGTH_SHORT).show();
+                     Toast.makeText(getActivity(),"send to server",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(getActivity(),"invalid",Toast.LENGTH_SHORT).show();
                     }
