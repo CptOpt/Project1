@@ -50,6 +50,7 @@
         <activity android:name=".Changepassword"/>
         <activity android:name=".Settings"/>
         <activity android:name=".VisibilitySettings"/>
+        <activity android:name=".Communication"/>
 
 <!--<activity an-->
     </application>
