@@ -8,6 +8,9 @@
 <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="true"
@@ -41,8 +44,12 @@
 
 <activity android:name=".EditDetails"></activity>
         <activity android:name=".EditAddress"></activity>
-        <activity android:name=".Myprofile"/>
+        <activity android:name=".Fab"/>
+        <activity android:name=".Feedback"/>
+        <activity android:name=".AddProject"/>
         <activity android:name=".Changepassword"/>
+        <activity android:name=".Settings"/>
+        <activity android:name=".VisibilitySettings"/>
 
 <!--<activity an-->
     </application>

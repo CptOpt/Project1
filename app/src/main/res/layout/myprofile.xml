@@ -2,10 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:id="@+id/parentlayout">
         <TextView
             android:layout_width="match_parent"
@@ -21,30 +22,14 @@
             android:layout_height="wrap_content"
             android:id="@+id/layout1"
             android:layout_below="@+id/h1txt"
-            android:layout_marginBottom="10dp">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+            android:layout_marginBottom="10dp"><de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:id="@+id/profilepic"
-                android:src="@drawable/myimg"
+                android:src="@drawable/kw"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="edit"
-                android:background="#ffffff"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:id="@+id/editimage"
-                android:drawableLeft="@drawable/edit"
-                android:layout_marginBottom="5dp"
 
-                android:layout_alignParentBottom="true"
-                android:layout_alignRight="@+id/profilepic"
-                android:layout_alignEnd="@+id/profilepic"
-                android:layout_marginRight="37dp"
-                android:layout_marginEnd="37dp" />
         </RelativeLayout>
         <TextView
             android:layout_width="match_parent"
@@ -53,13 +38,17 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:id="@+id/heading1"
-            android:layout_below="@id/layout1"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginRight="83dp"
+            android:layout_marginEnd="83dp"
+            android:layout_below="@+id/layout1"
+            />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/layout2"
     android:orientation="vertical"
+    android:layout_marginTop="10dp"
     android:layout_below="@+id/heading1"
     android:layout_alignParentRight="true"
     android:layout_alignParentEnd="true">
@@ -67,10 +56,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
         android:text="FirstName"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/fn"/>
     <TextView
@@ -80,52 +70,57 @@
         android:text="LastName"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/ln"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-
+        android:layout_marginBottom="10dp"
         android:text="CurrentLocation"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/cl"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Industry"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/industry"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Date Of Birth"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/dob"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Gender"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/gender"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Key Skills"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/skills"/>
     <TextView
@@ -134,7 +129,7 @@
         android:text="Mobile Number"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/phno"/>
     <TextView
@@ -143,7 +138,7 @@
         android:text="Email"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/mail"/>
     <TextView
@@ -152,7 +147,7 @@
         android:text="Highest Qualification"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/qualification"/>
     <TextView
@@ -171,7 +166,7 @@
         android:text="Pincode"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/pincode"/>
     <TextView
@@ -180,7 +175,7 @@
         android:text="Nationality"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/nationality"/>
     <TextView
@@ -198,7 +193,7 @@
         android:text="Specialization"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/specialization"/>
     <TextView
@@ -207,7 +202,7 @@
         android:text="University"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/university"/>
     <TextView
@@ -216,7 +211,7 @@
         android:text="Year of Passing"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/yop"/>
     <TextView
@@ -225,7 +220,7 @@
         android:text="Desired JobType"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/jobtype"/>
     <TextView
@@ -234,20 +229,37 @@
         android:text="Preffered Location"/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/pl"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/uploadresume"
-        android:layout_marginBottom="10dp"
-        android:text="Upload Resume"/>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:id="@+id/butns"
+       android:weightSum="1">
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="40dp"
+           android:id="@+id/uploadresume"
+           android:layout_marginBottom="10dp"
+           android:text="Upload Resume"
+           android:layout_marginRight="30dp"
+           android:layout_weight="0.29" />
+       <Button
+           android:layout_width="wrap_content"
+           android:layout_height="40dp"
+           android:id="@+id/upload"
+            android:text="Upload"
+           android:layout_weight="0.35" />
+   </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="Download Resume"
         android:id="@+id/downloadResume"/>
+
+        />
 
 </LinearLayout>
 

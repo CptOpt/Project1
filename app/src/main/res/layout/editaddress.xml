@@ -56,18 +56,18 @@
             android:textSize="20dp"
             android:layout_marginBottom="10dp"
             android:text="State   "/>
-        <Spinner
+        <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:id="@+id/statespinner"
             android:layout_gravity="center_vertical"
             android:layout_alignParentBottom="true"
             android:layout_toRightOf="@+id/txtstate"
-            android:layout_marginLeft="36dp"
-            android:layout_marginStart="36dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginStart="41dp"
             android:layout_below="@+id/streetname">
 
-        </Spinner>
+        </AutoCompleteTextView>
 
     </LinearLayout>
       <LinearLayout
@@ -85,16 +85,18 @@
               android:id="@+id/txtcountry"
               android:textSize="20sp"
               android:text="Country "/>
-          <Spinner
+          <AutoCompleteTextView
               android:layout_width="match_parent"
               android:layout_height="40dp"
               android:id="@+id/countriesSpinner"
               android:layout_gravity="center_vertical"
               android:layout_below="@+id/streetname"
+              android:layout_marginLeft="32dp"
+              android:layout_marginStart="32dp"
               android:layout_alignLeft="@+id/statespinner"
               android:layout_alignStart="@+id/statespinner">
 
-          </Spinner>
+          </AutoCompleteTextView>
       </LinearLayout>
 
 <EditText
@@ -160,18 +162,18 @@
               android:textSize="20dp"
               android:layout_marginBottom="10dp"
               android:text="State   "/>
-          <Spinner
+          <AutoCompleteTextView
               android:layout_width="match_parent"
               android:layout_height="40dp"
               android:id="@+id/statespinner1"
               android:layout_gravity="center_vertical"
               android:layout_alignParentBottom="true"
               android:layout_toRightOf="@+id/txtstate1"
-              android:layout_marginLeft="36dp"
-              android:layout_marginStart="36dp"
+              android:layout_marginLeft="42dp"
+              android:layout_marginStart="42dp"
               android:layout_below="@+id/streetname1">
 
-          </Spinner>
+          </AutoCompleteTextView>
 
       </LinearLayout>
       <LinearLayout
@@ -188,17 +190,19 @@
               android:gravity="center_vertical"
               android:id="@+id/txtcountry1"
               android:textSize="20dp"
-              android:text="Country "/>
-          <Spinner
+              android:text="Country"/>
+          <AutoCompleteTextView
               android:layout_width="match_parent"
               android:layout_height="40dp"
               android:id="@+id/countriesSpinner1"
               android:layout_gravity="center_vertical"
               android:layout_below="@+id/streetname1"
+              android:layout_marginLeft="40dp"
+              android:layout_marginStart="40dp"
               android:layout_alignLeft="@+id/statespinner1"
               android:layout_alignStart="@+id/statespinner1">
 
-          </Spinner>
+          </AutoCompleteTextView>
       </LinearLayout>
 
       <EditText

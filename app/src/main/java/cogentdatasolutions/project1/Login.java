@@ -2,9 +2,11 @@ package cogentdatasolutions.project1;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -39,10 +41,11 @@ public class Login extends Fragment {
     EditText emailId, password,sample;
    Button submit;
    TextView textView;
-
+    String empid,errmsg;
     String loginid,loginpassword,mailtxt;
     String finalJson;
     JSONObject jsonObject1,jsonObject2 = null;
+    SharedPreferences.Editor editor;
 
     @Nullable
     @Override
@@ -53,7 +56,7 @@ public class Login extends Fragment {
         password = (EditText) view.findViewById(R.id.password);
         submit = (Button) view.findViewById(R.id.submit);
         textView = (TextView) view.findViewById(R.id.textView);
-   // sample= (EditText) view.findViewById(R.id.sampleedit);
+
 
 
 
@@ -107,9 +110,6 @@ public class Login extends Fragment {
 //
            }
         });
-
-
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,12 @@ public class Login extends Fragment {
                 } else if(!Patterns.EMAIL_ADDRESS.matcher(emailId.getText().toString()).matches()){
                     emailId.setError("Invalid Email Address");
                 }else {
-
+                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                    editor = preferences.edit();
+                    editor.putString("EMAILID",loginid);
+                    editor.commit();
+                    String str=preferences.getString("EMAILID","");
+                    Log.e(TAG, "Preferences string: "+str );
                 new LoginServerTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/login");
 
 
@@ -212,8 +217,14 @@ public class Login extends Fragment {
                     JSONObject jobj = new JSONObject(finalJson);
                     Log.e(TAG, "Response Json: "+jobj );
                     String str = (String) jobj.get("status");
-                    if (str.equals("success")) {
-                        Toast.makeText(getContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                    if (str.equals("true")) {
+
+                        String msg=jobj.getString("msg");
+                        Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
+                         empid=(String)jobj.get("employeeId");
+                        Log.e(TAG, "EmployeeId: "+empid );
+                        editor.putString("EMPID",empid);
+                        editor.commit();
                         Intent i=new Intent(getActivity(),MainActivity.class);
                         startActivity(i);
 //                        startActivity(new Intent(getActivity(), MainActivity.class));
@@ -222,12 +233,15 @@ public class Login extends Fragment {
 //                        ft.replace(R.id.register_frag,frag);
 //
                     }else
-                        Toast.makeText(getContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+                    errmsg=(String)jobj.get("err_msg");
+                    Log.e(TAG, "ErrorMsg: "+errmsg );
+                        Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace ();
                 }
             }
-//
+             emailId.setText("");
+            password.setText("");
             super.onPostExecute(result);
         }
     }

@@ -11,12 +11,11 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-
 /**
  * Created by Divya on 6/13/2016.
  */
 public class Profile extends Fragment {
-    Button profile,signin,signout,editpf,recommended,tc,policy;
+    Button profile,signin,editpf,recommended,tc,policy;
     View v;
     @Nullable
     @Override
@@ -32,43 +31,26 @@ public class Profile extends Fragment {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getActivity(),Myprofile.class);
+                Intent i=new Intent(getActivity(),Fab.class);
                 startActivity(i);
             }
         });
-       // signout=(Button)view.findViewById(R.id.Signout);
-       signin.setTag(1);
-        signin.setText("SignIn");
- //       StartAnimations();
-//        signin.setAnimation(animation1);
-//        recommended.setAnimation(animation1);
-//        resume.setAnimation(animation1);
-//        editpf.setAnimation(animation1);
-//        policy.setAnimation(animation1);
-//        tc.setAnimation(animation1);
-      //  signin.setVisibility(View.VISIBLE);
         signin.setOnClickListener(
 
 
                 new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // signin.setVisibility(View.GONE);
 
-                final int status=(Integer)v.getTag();
-                if(status == 1)
-                {
+
+
                     Intent i=new Intent(getActivity(),Signin.class);
+                signin.setEnabled(false);
                     startActivity(i);
 
-                    signin.setText("SignOut");
-                    signin.setTag(0);
 
-                }   else{     signin.setText("SignIn");
-                    signin.setTag(1);
-                }
 
-                new JSONTask().execute();
+
          }
         });
         editpf.setOnClickListener(new View.OnClickListener() {
@@ -79,47 +61,9 @@ public class Profile extends Fragment {
                 startActivity(i);
             }
         });
-     //   signout.setVisibility(View.VISIBLE);
+
         return view;
     }
-//    private void StartAnimations() {
-//        Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.popup);
-//        anim.reset();
-//        signin.clearAnimation();
-//        signin.startAnimation(anim);
-//        anim = AnimationUtils.loadAnimation(getContext(), R.anim.popup);
-//        anim.reset();
-//        recommended.clearAnimation();
-//        recommended.startAnimation(anim);
-//        anim = AnimationUtils.loadAnimation(getContext(), R.anim.popup);
-//        anim.reset();
-//        resume.clearAnimation();
-//        resume.startAnimation(anim);
-//        anim = AnimationUtils.loadAnimation(getContext(), R.anim.popup);
-//        anim.reset();
-//        editpf.clearAnimation();
-//        editpf.startAnimation(anim);
-//        anim = AnimationUtils.loadAnimation(getContext(), R.anim.popup);
-//        anim.reset();
-//        policy.clearAnimation();
-//        policy.startAnimation(anim);
-//        anim = AnimationUtils.loadAnimation(getContext(), R.anim.popup);
-//        anim.reset();
-//        tc.clearAnimation();
-//        tc.startAnimation(anim);
-//
-//    }
-public class JSONTask extends AsyncTask<Void,Void,Void>{
-    @Override
-    protected Void doInBackground(Void... params) {
-        return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
 
 
-        super.onPostExecute(aVoid);
-    }
-}
 }

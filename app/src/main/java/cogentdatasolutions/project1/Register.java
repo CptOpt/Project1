@@ -40,11 +40,9 @@ public class Register extends Fragment {
     private BufferedReader bufferedReader = null;
     private InputStream inputStream = null;
     URL url = null;
-
-
     EditText fullanme, emailAddress, password1, password2;
     String name, mail, password, confrmpaswrd;
-    String finalJson;
+    String finalJson,errmsg;
 
 
     @Nullable
@@ -161,10 +159,12 @@ public class Register extends Fragment {
                     Log.e(TAG, "Response Json: " + jobj);
                     String str = (String) jobj.get("status");
                     if (str.equals("true")) {
-                        Toast.makeText(getContext(), "Registration Success", Toast.LENGTH_SHORT).show();
+                        String msg=jobj.getString("msg");
+                        Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
 
                     } else
-                        Toast.makeText(getContext(), "Registration Failed", Toast.LENGTH_SHORT).show();
+                    errmsg=jobj.getString("err_msg");
+                        Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
