@@ -101,7 +101,15 @@ public class Fab extends Activity {
             @Override
             public void onClick(View v) {
 
-                showFileChooser();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("application/*");
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                try{
+                    startActivityForResult(Intent.createChooser(intent,"Select file to upload"),2);
+                } catch (ActivityNotFoundException e){
+                    Toast.makeText(getApplicationContext(), "Please install File Manager", Toast.LENGTH_SHORT).show();
+                }
+//                showFileChooser();
             }
         });
         upload.setOnClickListener(new View.OnClickListener() {
@@ -150,17 +158,15 @@ public class Fab extends Activity {
             } else{
                 try {
                     if (requestCode == 2) {
-                        if (resultCode == Activity.RESULT_OK) {
-                            Uri selectdFileUri = data.getData();
-                            file1 = new File(selectdFileUri.getPath().toString());
-                            //   Log.e(TAG, "File: " + file1.getName());
-                            uploadedFileName = file1.getName().toString();
-                            //  Log.e(TAG, "FILE NAME: " + uploadedFileName);
-                            tokens = new StringTokenizer(uploadedFileName, ":");
-                            first = tokens.nextToken();
-                            file_1 = tokens.nextToken().trim();
-                            // Log.e(TAG, "FILE 1: " + file_1);
-                        }
+                        Uri selectdFileUri = data.getData();
+                        file1 = new File(selectdFileUri.getPath());
+                        //   Log.e(TAG, "File: " + file1.getName());
+                        uploadedFileName = file1.getName();
+                        //  Log.e(TAG, "FILE NAME: " + uploadedFileName);
+                        tokens = new StringTokenizer(uploadedFileName, ":");
+                        first = tokens.nextToken();
+                        file_1 = tokens.nextToken().trim();
+                        // Log.e(TAG, "FILE 1: " + file_1);
                     }
                 } catch (Exception e){
                     e.printStackTrace();
@@ -178,16 +184,16 @@ public class Fab extends Activity {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
-    private void showFileChooser() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("application/*");
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        try{
-            startActivityForResult(Intent.createChooser(intent,"Select file to upload"),2);
-        } catch (ActivityNotFoundException e){
-            Toast.makeText(getApplicationContext(), "Please install File Manager", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    private void showFileChooser() {
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("application/*");
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        try{
+//            startActivityForResult(Intent.createChooser(intent,"Select file to upload"),2);
+//        } catch (ActivityNotFoundException e){
+//            Toast.makeText(getApplicationContext(), "Please install File Manager", Toast.LENGTH_SHORT).show();
+//        }
+//    }
     private class UploadImageTask extends AsyncTask<Void, Void, String> {
 
         private String reqUrl = "http://10.80.15.119:8080/OptnCpt/rest/service/employeeImgUpload";
@@ -309,16 +315,16 @@ public class Fab extends Activity {
     }
     public class UploadpdfTask extends AsyncTask<String,String,String>{
 
-     //   private ProgressDialog dialog;
+        private ProgressDialog dialog;
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-//            dialog = new ProgressDialog(Fab.this);
-//            dialog.setTitle("Uploading");
-//            dialog.setMessage("Please Wait...");
-//            dialog.setCancelable(false);
-//            dialog.show();
+            dialog = new ProgressDialog(Fab.this);
+            dialog.setTitle("Uploading");
+            dialog.setMessage("Please Wait...");
+            dialog.setCancelable(true);
+            dialog.show();
         }
 
         @Override
@@ -381,7 +387,7 @@ public class Fab extends Activity {
             super.onPostExecute(result);
             if (response!=null) {
 
-                JSONObject jobj = null;
+                JSONObject jobj;
                 try {
                     jobj = new JSONObject(response);
                     Log.e(TAG, "Response Json: " + response);
@@ -397,8 +403,8 @@ public class Fab extends Activity {
                 }
 
 
-                //dialog.dismiss();
-                // Toast.makeText(getApplicationContext(), "Files Uploaded..", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+                 Toast.makeText(getApplicationContext(), "Files Uploaded..", Toast.LENGTH_SHORT).show();
             } else
                 Toast.makeText(getApplicationContext(), "Server Failed...", Toast.LENGTH_SHORT).show();
         }

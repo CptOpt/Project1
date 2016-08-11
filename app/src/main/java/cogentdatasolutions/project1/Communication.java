@@ -36,6 +36,9 @@ public class Communication extends Activity
     URL url = null;
     String finalJson,errmsg;
     String mail,empid;
+    RadioButton jobmailon,jobmailoff,notificationmailon,notificationmailoff,clientmailon,clientmailoff,paidmailon,paidmailoff,
+            notificationsmson,notificationsmsoff,clientsmson,clientsmsoff,paidsmson,paidsmsoff;
+
     String jsonmail,jsonnotificationalert,jsonclient,jsonpaidservices,jsonnotification1,jsonclient1,jsonpaidservices1;
     RadioGroup mailalerts,mailimpnotifications,
             mailclient,mailpaidservices,smsalerts,smsimpnotifications,smsclient,smspaidservices;
@@ -49,19 +52,35 @@ public class Communication extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.communication);
-        new GettingCommunicationJSONTask().execute("");
+        new GettingCommunicationJSONTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/communicationSettings");
         savechanges=(Button)findViewById(R.id.communicationsavechanges);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         mail  = prefs.getString("EMAILID","");
         empid=prefs.getString("EMPID","");
-        mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
-        mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
-        mailclient=(RadioGroup)findViewById(R.id.clientgrp);
-        mailpaidservices=(RadioGroup)findViewById(R.id.paidgrp);
-   //     smsalerts=(RadioGroup)findViewById(R.id.jobalertgrp1);
-        smsimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp1);
-        smsclient=(RadioGroup)findViewById(R.id.clientgrp1);
-        smspaidservices=(RadioGroup)findViewById(R.id.paidgrp1);
+//        jobmailon= (RadioButton) findViewById(R.id.onbuttonE1);
+//        jobmailoff=(RadioButton) findViewById(R.id.offButtonE1);
+//        notificationmailon= (RadioButton) findViewById(R.id.onbuttonE2);
+//        notificationmailoff=(RadioButton) findViewById(R.id.offbuttonE2);
+//        clientmailon= (RadioButton) findViewById(R.id.onbuttonE3);
+//        clientmailoff=(RadioButton) findViewById(R.id.offbuttonE3);
+//        paidmailon= (RadioButton) findViewById(R.id.onbuttonE4);
+//      paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
+//        notificationsmson= (RadioButton) findViewById(R.id.onbuttonS1);
+//        notificationsmsoff=(RadioButton) findViewById(R.id.offbuttonS1);
+//        clientsmson= (RadioButton) findViewById(R.id.onbuttonS2);
+//        clientsmsoff=(RadioButton) findViewById(R.id.offbuttonS2);
+//        paidsmson= (RadioButton) findViewById(R.id.onbuttonS3);
+//        paidsmsoff=(RadioButton) findViewById(R.id.offbuttonS3);
+
+
+//        mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
+//        mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
+//        mailclient=(RadioGroup)findViewById(R.id.clientgrp);
+//        mailpaidservices=(RadioGroup)findViewById(R.id.paidgrp);
+//   //     smsalerts=(RadioGroup)findViewById(R.id.jobalertgrp1);
+//        smsimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp1);
+//        smsclient=(RadioGroup)findViewById(R.id.clientgrp1);
+//        smspaidservices=(RadioGroup)findViewById(R.id.paidgrp1);
 
         savechanges.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -253,7 +272,34 @@ public class Communication extends Activity
     }
 
     private class GettingCommunicationJSONTask extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
+            mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
+            mailclient=(RadioGroup)findViewById(R.id.clientgrp);
+            mailpaidservices=(RadioGroup)findViewById(R.id.paidgrp);
+            //     smsalerts=(RadioGroup)findViewById(R.id.jobalertgrp1);
+            smsimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp1);
+            smsclient=(RadioGroup)findViewById(R.id.clientgrp1);
+            smspaidservices=(RadioGroup)findViewById(R.id.paidgrp1);
 
+            jobmailon= (RadioButton) findViewById(R.id.onbuttonE1);
+            jobmailoff=(RadioButton) findViewById(R.id.offButtonE1);
+            notificationmailon= (RadioButton) findViewById(R.id.onbuttonE2);
+            notificationmailoff=(RadioButton) findViewById(R.id.offbuttonE2);
+            clientmailon= (RadioButton) findViewById(R.id.onbuttonE3);
+            clientmailoff=(RadioButton) findViewById(R.id.offbuttonE3);
+            paidmailon= (RadioButton) findViewById(R.id.onbuttonE4);
+            paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
+            notificationsmson= (RadioButton) findViewById(R.id.onbuttonS1);
+            notificationsmsoff=(RadioButton) findViewById(R.id.offbuttonS1);
+            clientsmson= (RadioButton) findViewById(R.id.onbuttonS2);
+            clientsmsoff=(RadioButton) findViewById(R.id.offbuttonS2);
+            paidsmson= (RadioButton) findViewById(R.id.onbuttonS3);
+            paidsmsoff=(RadioButton) findViewById(R.id.offbuttonS3);
+
+            super.onPreExecute();
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -275,7 +321,7 @@ public class Communication extends Activity
                 String jsonObj = jsonObject1.toString();
                 Log.e(TAG, "doInBackground: " + jsonObj);
                 //Header
-                connection.setRequestProperty("registerObject", "" + jsonObj);
+                connection.setRequestProperty("communicationDetails", "" + jsonObj);
                 connection.connect();
                 inputStream = connection.getInputStream();
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -311,18 +357,51 @@ public class Communication extends Activity
                 try {
                     JSONObject parentObj = new JSONObject(finalJson);
                     Log.e(TAG, "Response Json: " + parentObj);
-                    String str = (String) parentObj.get("communicationDetails");
+                    String str = (String) parentObj.get("communicationDetailsJSON");
                     JSONObject childobj=new JSONObject(str);
-                    jsonmail=childobj.getString("jobMailAlerts");
-                    jsonnotificationalert=childobj.getString("emailAlertFromOptnCpt");
-                    jsonclient=childobj.getString("emailAlertsFromClients");
-                    jsonpaidservices=childobj.getString("emailAlertFromPaidServices");
-                    jsonnotification1=childobj.getString("callOrSmsAlertsFroOptnCpt");
-                    jsonclient1=childobj.getString("callOrSmsAlertsFromClients");
-                    jsonpaidservices1=childobj.getString("callOrSmsAlertsPaidServices");
+                    jsonmail=childobj.getString("jobMailAlert");
+                    Log.e(TAG, "Response Json: " + jsonmail);
+                    jsonnotificationalert=childobj.getString("notificationMailAlert");
+                    jsonclient=childobj.getString("clientMailAlert");
+                    jsonpaidservices=childobj.getString("paidMailAlert");
+                    jsonnotification1=childobj.getString("notificationcallorSMSAlert");
+                    jsonclient1=childobj.getString("clientcallorSMSAlert");
+                    jsonpaidservices1=childobj.getString("paidcallorSMSAlert");
                     if (jsonmail.equals("1"))
                     {
+                   mailalerts.check(R.id.onbuttonE1);
 
+                        jobmailon.setChecked(true);
+                    }
+                    if (jsonnotificationalert.equals("1"))
+                    {
+                        mailimpnotifications.check(R.id.onbuttonE2);
+                        notificationmailon.setChecked(true);
+                    }
+                    if (jsonclient.equals("1"))
+                    {
+                        mailclient.check(R.id.onbuttonE3);
+                        clientmailon.setChecked(true);
+                    }
+                    if (jsonpaidservices.equals("1"))
+                    {
+                        mailpaidservices.check(R.id.onbuttonE4);
+                       paidmailon.setChecked(true);
+                    }
+                    if (jsonnotification1.equals("1"))
+                    {
+                        smsimpnotifications.check(R.id.onbuttonS1);
+                        notificationsmson.setChecked(true);
+                    }
+                    if (jsonclient1.equals("1"))
+                    {
+                        smsclient.check(R.id.onbuttonS2);
+                        clientsmson.setChecked(true);
+                    }
+                    if (jsonpaidservices1.equals("1"))
+                    {
+                        smspaidservices.check(R.id.onbuttonS3);
+                        paidsmson.setChecked(true);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
