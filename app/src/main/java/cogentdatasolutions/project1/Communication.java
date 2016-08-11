@@ -57,30 +57,30 @@ public class Communication extends Activity
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         mail  = prefs.getString("EMAILID","");
         empid=prefs.getString("EMPID","");
-//        jobmailon= (RadioButton) findViewById(R.id.onbuttonE1);
-//        jobmailoff=(RadioButton) findViewById(R.id.offButtonE1);
-//        notificationmailon= (RadioButton) findViewById(R.id.onbuttonE2);
-//        notificationmailoff=(RadioButton) findViewById(R.id.offbuttonE2);
-//        clientmailon= (RadioButton) findViewById(R.id.onbuttonE3);
-//        clientmailoff=(RadioButton) findViewById(R.id.offbuttonE3);
-//        paidmailon= (RadioButton) findViewById(R.id.onbuttonE4);
-//      paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
-//        notificationsmson= (RadioButton) findViewById(R.id.onbuttonS1);
-//        notificationsmsoff=(RadioButton) findViewById(R.id.offbuttonS1);
-//        clientsmson= (RadioButton) findViewById(R.id.onbuttonS2);
-//        clientsmsoff=(RadioButton) findViewById(R.id.offbuttonS2);
-//        paidsmson= (RadioButton) findViewById(R.id.onbuttonS3);
-//        paidsmsoff=(RadioButton) findViewById(R.id.offbuttonS3);
+        jobmailon= (RadioButton) findViewById(R.id.onbuttonE1);
+        jobmailoff=(RadioButton) findViewById(R.id.offButtonE1);
+        notificationmailon= (RadioButton) findViewById(R.id.onbuttonE2);
+        notificationmailoff=(RadioButton) findViewById(R.id.offbuttonE2);
+        clientmailon= (RadioButton) findViewById(R.id.onbuttonE3);
+        clientmailoff=(RadioButton) findViewById(R.id.offbuttonE3);
+        paidmailon= (RadioButton) findViewById(R.id.onbuttonE4);
+      paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
+        notificationsmson= (RadioButton) findViewById(R.id.onbuttonS1);
+        notificationsmsoff=(RadioButton) findViewById(R.id.offbuttonS1);
+        clientsmson= (RadioButton) findViewById(R.id.onbuttonS2);
+        clientsmsoff=(RadioButton) findViewById(R.id.offbuttonS2);
+        paidsmson= (RadioButton) findViewById(R.id.onbuttonS3);
+        paidsmsoff=(RadioButton) findViewById(R.id.offbuttonS3);
 
 
-//        mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
-//        mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
-//        mailclient=(RadioGroup)findViewById(R.id.clientgrp);
-//        mailpaidservices=(RadioGroup)findViewById(R.id.paidgrp);
-//   //     smsalerts=(RadioGroup)findViewById(R.id.jobalertgrp1);
-//        smsimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp1);
-//        smsclient=(RadioGroup)findViewById(R.id.clientgrp1);
-//        smspaidservices=(RadioGroup)findViewById(R.id.paidgrp1);
+        mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
+        mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
+        mailclient=(RadioGroup)findViewById(R.id.clientgrp);
+        mailpaidservices=(RadioGroup)findViewById(R.id.paidgrp);
+   //     smsalerts=(RadioGroup)findViewById(R.id.jobalertgrp1);
+        smsimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp1);
+        smsclient=(RadioGroup)findViewById(R.id.clientgrp1);
+        smspaidservices=(RadioGroup)findViewById(R.id.paidgrp1);
 
         savechanges.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -274,29 +274,29 @@ public class Communication extends Activity
     private class GettingCommunicationJSONTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
-            mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
-            mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
-            mailclient=(RadioGroup)findViewById(R.id.clientgrp);
-            mailpaidservices=(RadioGroup)findViewById(R.id.paidgrp);
-            //     smsalerts=(RadioGroup)findViewById(R.id.jobalertgrp1);
-            smsimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp1);
-            smsclient=(RadioGroup)findViewById(R.id.clientgrp1);
-            smspaidservices=(RadioGroup)findViewById(R.id.paidgrp1);
-
-            jobmailon= (RadioButton) findViewById(R.id.onbuttonE1);
-            jobmailoff=(RadioButton) findViewById(R.id.offButtonE1);
-            notificationmailon= (RadioButton) findViewById(R.id.onbuttonE2);
-            notificationmailoff=(RadioButton) findViewById(R.id.offbuttonE2);
-            clientmailon= (RadioButton) findViewById(R.id.onbuttonE3);
-            clientmailoff=(RadioButton) findViewById(R.id.offbuttonE3);
-            paidmailon= (RadioButton) findViewById(R.id.onbuttonE4);
-            paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
-            notificationsmson= (RadioButton) findViewById(R.id.onbuttonS1);
-            notificationsmsoff=(RadioButton) findViewById(R.id.offbuttonS1);
-            clientsmson= (RadioButton) findViewById(R.id.onbuttonS2);
-            clientsmsoff=(RadioButton) findViewById(R.id.offbuttonS2);
-            paidsmson= (RadioButton) findViewById(R.id.onbuttonS3);
-            paidsmsoff=(RadioButton) findViewById(R.id.offbuttonS3);
+//            mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
+//            mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
+//            mailclient=(RadioGroup)findViewById(R.id.clientgrp);
+//            mailpaidservices=(RadioGroup)findViewById(R.id.paidgrp);
+//            //     smsalerts=(RadioGroup)findViewById(R.id.jobalertgrp1);
+//            smsimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp1);
+//            smsclient=(RadioGroup)findViewById(R.id.clientgrp1);
+//            smspaidservices=(RadioGroup)findViewById(R.id.paidgrp1);
+//
+//            jobmailon= (RadioButton) findViewById(R.id.onbuttonE1);
+//            jobmailoff=(RadioButton) findViewById(R.id.offButtonE1);
+//            notificationmailon= (RadioButton) findViewById(R.id.onbuttonE2);
+//            notificationmailoff=(RadioButton) findViewById(R.id.offbuttonE2);
+//            clientmailon= (RadioButton) findViewById(R.id.onbuttonE3);
+//            clientmailoff=(RadioButton) findViewById(R.id.offbuttonE3);
+//            paidmailon= (RadioButton) findViewById(R.id.onbuttonE4);
+//            paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
+//            notificationsmson= (RadioButton) findViewById(R.id.onbuttonS1);
+//            notificationsmsoff=(RadioButton) findViewById(R.id.offbuttonS1);
+//            clientsmson= (RadioButton) findViewById(R.id.onbuttonS2);
+//            clientsmsoff=(RadioButton) findViewById(R.id.offbuttonS2);
+//            paidsmson= (RadioButton) findViewById(R.id.onbuttonS3);
+//            paidsmsoff=(RadioButton) findViewById(R.id.offbuttonS3);
 
             super.onPreExecute();
         }
@@ -372,36 +372,68 @@ public class Communication extends Activity
                    mailalerts.check(R.id.onbuttonE1);
 
                         jobmailon.setChecked(true);
+                    }else
+                    {
+                        mailalerts.check(R.id.offButtonE1);
+                        jobmailoff.setChecked(true);
                     }
+
                     if (jsonnotificationalert.equals("1"))
                     {
                         mailimpnotifications.check(R.id.onbuttonE2);
                         notificationmailon.setChecked(true);
+                    }else
+                    {
+                      mailimpnotifications.check(R.id.offbuttonE2);
+                        notificationmailoff.setChecked(true);
                     }
                     if (jsonclient.equals("1"))
                     {
                         mailclient.check(R.id.onbuttonE3);
                         clientmailon.setChecked(true);
+                    }else
+                    {
+                        mailclient.check(R.id.offbuttonE3);
+                        clientmailoff.setChecked(true);
                     }
                     if (jsonpaidservices.equals("1"))
                     {
                         mailpaidservices.check(R.id.onbuttonE4);
                        paidmailon.setChecked(true);
                     }
+                    else
+                    {
+                     mailpaidservices.check(R.id.offbuttonE4);
+                        paidmailoff.setChecked(true);
+                    }
                     if (jsonnotification1.equals("1"))
                     {
                         smsimpnotifications.check(R.id.onbuttonS1);
                         notificationsmson.setChecked(true);
+                    }
+                    else
+                    {
+                        smsimpnotifications.check(R.id.offbuttonS1);
+                        notificationmailoff.setChecked(true);
                     }
                     if (jsonclient1.equals("1"))
                     {
                         smsclient.check(R.id.onbuttonS2);
                         clientsmson.setChecked(true);
                     }
+                    else
+                    {
+                    smsclient.check(R.id.offbuttonS2);
+                        clientsmsoff.setChecked(true);
+                    }
                     if (jsonpaidservices1.equals("1"))
                     {
                         smspaidservices.check(R.id.onbuttonS3);
                         paidsmson.setChecked(true);
+                    }else
+                    {
+                        smspaidservices.check(R.id.offbuttonS3);
+                        paidsmsoff.setChecked(true);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
