@@ -128,7 +128,16 @@ public class Fab extends Activity {
         downloadFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               new FileDwnloadAsyn().execute();
+                DownloadManager.Request request=new DownloadManager.Request(Uri.parse(myUrl));
+                // DownloadManager.Request request=new DownloadManager()
+                request.setTitle("File Download");
+                request.setDescription("file is being downloaded....");
+                request.allowScanningByMediaScanner();
+                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                String nameOfTheFile= URLUtil.guessFileName(myUrl,null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,nameOfTheFile);
+                DownloadManager manager= (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                manager.enqueue(request);
             }
         });
 
