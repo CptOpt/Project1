@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +8,6 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/serviceheading"
             android:layout_width="wrap_content"
@@ -89,9 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/offButtonE1"
-                android:layout_alignTop="@+id/onbutton"
-                android:layout_toRightOf="@+id/onbutton"
-                android:layout_toEndOf="@+id/onbutton"/>
+              />
         </RadioGroup>
         <RadioGroup
             android:id="@+id/impNotifctngrp"
@@ -101,24 +97,16 @@
             android:layout_alignTop="@+id/notifications"
             android:layout_alignLeft="@+id/clientgrp"
             android:layout_alignStart="@+id/clientgrp">
+           <RadioButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="On"
+               android:id="@+id/onbuttonE2"/>
             <RadioButton
-
-                android:text="On"
-                android:id="@+id/onbuttonE2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/jobAlerts"
-                android:layout_alignLeft="@+id/emailheading"
-                android:layout_alignStart="@+id/emailheading" />
-
-            <RadioButton
                 android:text="Off"
-                android:id="@+id/offbuttonE2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/onbutton"
-                android:layout_toRightOf="@+id/onbutton"
-                android:layout_toEndOf="@+id/onbutton"/>
+                android:id="@+id/offbuttonE2"/>
         </RadioGroup>
         <RadioGroup
             android:id="@+id/clientgrp"

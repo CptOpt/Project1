@@ -1,6 +1,7 @@
 package cogentdatasolutions.project1;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -21,6 +22,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -35,11 +38,13 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.StringTokenizer;
 
@@ -64,6 +69,7 @@ public class Fab extends Activity {
     FileBody fileBody1;
     String response,empid;
     String errmsg,resumeerr;
+    String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume";
     private static final String TAG = Fab.class.getSimpleName();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,6 +125,12 @@ public class Fab extends Activity {
             }
         });
         downloadFile = (Button) findViewById(R.id.downloadResume);
+        downloadFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               new FileDwnloadAsyn().execute();
+            }
+        });
 
 //        fab = (FloatingActionButton) findViewById(R.id.profile_edit_fab);
 //        fab.setOnClickListener( View.OnClickListener() {
@@ -136,7 +148,9 @@ public class Fab extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
+
             if(requestCode == IMAGE_REQUEST_CODE){
+
                 Uri selectedImage = data.getData();
                 picturePath = getPath(selectedImage);
 
@@ -395,18 +409,77 @@ public class Fab extends Activity {
                     if (stat.equals("true")){
                         String msg=jobj.getString("msg");
                         Toast.makeText(Fab.this,msg,Toast.LENGTH_LONG).show();
-                    }else
-                        resumeerr=jobj.getString("err_msg");
-                    Toast.makeText(Fab.this,resumeerr,Toast.LENGTH_LONG).show();
+                    }else {
+                        resumeerr = jobj.getString("err_msg");
+                        Toast.makeText(Fab.this, resumeerr, Toast.LENGTH_LONG).show();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
 
                 dialog.dismiss();
-                 Toast.makeText(getApplicationContext(), "Files Uploaded..", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), "Files Uploaded..", Toast.LENGTH_SHORT).show();
             } else
                 Toast.makeText(getApplicationContext(), "Server Failed...", Toast.LENGTH_SHORT).show();
         }
     }
-}
+    public class FileDwnloadAsyn extends AsyncTask<Void,Void,Void> {
+
+        private JSONObject jsonObject1;
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                URL url = new URL(myUrl);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoOutput(true);
+                connection.setRequestMethod("POST");
+             //   connection.setRequestProperty("employeeId",empid);
+                jsonObject1 = new JSONObject();
+                jsonObject1.put("employeeId", ""+ empid);
+                String jsonObj = jsonObject1.toString();
+                Log.e(TAG, "doInBackground: " + jsonObj);
+                //Header
+                connection.setRequestProperty("resumeDetails", "" + jsonObj);
+                connection.connect();
+
+                File rootDirectory = new File(Environment.getExternalStoragePublicDirectory
+                        (Environment.DIRECTORY_DOWNLOADS), "My Downloads");
+                if (!rootDirectory.exists()) {
+                    rootDirectory.mkdirs();
+                }
+
+                String nameOfTheFile = URLUtil.guessFileName(myUrl, null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
+                File file = new File(rootDirectory, nameOfTheFile);
+                file.createNewFile();
+
+                InputStream stream = connection.getInputStream();
+                FileOutputStream outputStream = new FileOutputStream(file);
+                byte[] buffer = new byte[1024];
+                int bytecount = 0;
+                while ((bytecount = stream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, bytecount);
+                }
+                outputStream.close();
+                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                intent.setData(Uri.fromFile(file));
+                sendBroadcast(intent);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            Toast.makeText(getApplicationContext(), "Completed", Toast.LENGTH_SHORT).show();
+            super.onPostExecute(result);
+        }
+    }
+  }

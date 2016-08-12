@@ -11,7 +11,8 @@
         android:text="Please enter your feedback"
         android:id="@+id/textView4"
         android:textSize="20dp"
-        android:layout_marginTop="78dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
     <Button
@@ -26,9 +27,10 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:inputType="text"
-        android:layout_marginTop="10dp"
+
         android:background="@drawable/border"
         android:id="@+id/editText"
+        android:gravity="start"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

@@ -107,8 +107,6 @@ public class Communication extends Activity
 //        alert
             if (selectedmailalert.equals("on"))
             {
-
-
                 visibilitystatus1=1;
             }
             else
@@ -362,6 +360,7 @@ public class Communication extends Activity
                     jsonmail=childobj.getString("jobMailAlert");
                     Log.e(TAG, "Response Json: " + jsonmail);
                     jsonnotificationalert=childobj.getString("notificationMailAlert");
+                    Log.e(TAG, "Responsenotificaton: " + jsonnotificationalert);
                     jsonclient=childobj.getString("clientMailAlert");
                     jsonpaidservices=childobj.getString("paidMailAlert");
                     jsonnotification1=childobj.getString("notificationcallorSMSAlert");
@@ -369,22 +368,21 @@ public class Communication extends Activity
                     jsonpaidservices1=childobj.getString("paidcallorSMSAlert");
                     if (jsonmail.equals("1"))
                     {
-                   mailalerts.check(R.id.onbuttonE1);
-
+                         mailalerts.check(R.id.onbuttonE1);
                         jobmailon.setChecked(true);
                     }else
                     {
                         mailalerts.check(R.id.offButtonE1);
                         jobmailoff.setChecked(true);
                     }
-
                     if (jsonnotificationalert.equals("1"))
                     {
+
                         mailimpnotifications.check(R.id.onbuttonE2);
                         notificationmailon.setChecked(true);
                     }else
                     {
-                      mailimpnotifications.check(R.id.offbuttonE2);
+                        mailimpnotifications.check(R.id.offbuttonE2);
                         notificationmailoff.setChecked(true);
                     }
                     if (jsonclient.equals("1"))
