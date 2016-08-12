@@ -44,7 +44,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
+import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.URL;
 import java.util.StringTokenizer;
 
@@ -128,18 +131,26 @@ public class Fab extends Activity {
         downloadFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DownloadManager.Request request=new DownloadManager.Request(Uri.parse(myUrl));
-                // DownloadManager.Request request=new DownloadManager()
-                request.setTitle("File Download");
-                request.setDescription("file is being downloaded....");
-                request.allowScanningByMediaScanner();
-                request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                String nameOfTheFile= URLUtil.guessFileName(myUrl,null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,nameOfTheFile);
-                DownloadManager manager= (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-                manager.enqueue(request);
+
+                if (!isHostReachable(myUrl,8080,5000)){
+                    Toast.makeText(Fab.this, "Server Failed", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myUrl));
+                        // DownloadManager.Request request=new DownloadManager()
+                        request.setTitle("File Download");
+                        request.setDescription("file is being downloaded....");
+                        request.allowScanningByMediaScanner();
+                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+                        String nameOfTheFile = URLUtil.guessFileName(myUrl, null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
+                        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, nameOfTheFile);
+                        DownloadManager manager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+                        manager.enqueue(request);
+                    } catch (Exception e){e.printStackTrace();}
+                }
             }
         });
+
 
 //        fab = (FloatingActionButton) findViewById(R.id.profile_edit_fab);
 //        fab.setOnClickListener( View.OnClickListener() {
@@ -151,6 +162,25 @@ public class Fab extends Activity {
 //
 //            }
 //      });
+    }
+
+    public static boolean isHostReachable(String url, int portAddress, int connectTimeOut){
+        boolean connected = false;
+        Socket socket;
+        try{
+            socket = new Socket();
+            SocketAddress address = new InetSocketAddress(url,portAddress);
+            socket.connect(address,connectTimeOut);
+            if (socket.isConnected()){
+                connected = true;
+                socket.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            socket = null;
+        }
+        return connected;
     }
 
     @Override
