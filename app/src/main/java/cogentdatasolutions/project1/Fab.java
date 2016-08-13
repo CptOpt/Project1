@@ -71,6 +71,7 @@ public class Fab extends Activity {
     File file1;
     FileBody fileBody1;
     String response,empid;
+    private JSONObject jsonObject1 = null;
     String errmsg,resumeerr;
     String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume";
     private static final String TAG = Fab.class.getSimpleName();
@@ -132,23 +133,30 @@ public class Fab extends Activity {
             @Override
             public void onClick(View v) {
 
-                if (!isHostReachable(myUrl,8080,5000)){
-                    Toast.makeText(Fab.this, "Server Failed", Toast.LENGTH_SHORT).show();
-                } else {
+//                if (!isHostReachable(myUrl,8080,5000)){
+//                    Toast.makeText(Fab.this, "Server Failed", Toast.LENGTH_SHORT).show();
+//                } else {
                     try {
                         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myUrl));
                         // DownloadManager.Request request=new DownloadManager()
                         request.setTitle("File Download");
                         request.setDescription("file is being downloaded....");
+                      //  jsonObject1 = new JSONObject();
+                        //jsonObject1.put("employeeId", ""+ empid);
+//                        Log.e(TAG, "doInBackground: " + jsonObj);
                         request.allowScanningByMediaScanner();
+                      //  request.addRequestHeader("resumeDetails" ,""+jsonObj);
                         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                         String nameOfTheFile = URLUtil.guessFileName(myUrl, null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
                         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, nameOfTheFile);
                         DownloadManager manager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                         manager.enqueue(request);
-                    } catch (Exception e){e.printStackTrace();}
+                    } catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
-            }
+//            }
         });
 
 
@@ -163,25 +171,25 @@ public class Fab extends Activity {
 //            }
 //      });
     }
-
-    public static boolean isHostReachable(String url, int portAddress, int connectTimeOut){
-        boolean connected = false;
-        Socket socket;
-        try{
-            socket = new Socket();
-            SocketAddress address = new InetSocketAddress(url,portAddress);
-            socket.connect(address,connectTimeOut);
-            if (socket.isConnected()){
-                connected = true;
-                socket.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            socket = null;
-        }
-        return connected;
-    }
+//
+//    public static boolean isHostReachable(String url, int portAddress, int connectTimeOut){
+//        boolean connected = false;
+//        Socket socket;
+//        try{
+//            socket = new Socket();
+//            SocketAddress address = new InetSocketAddress(url,portAddress);
+//            socket.connect(address,connectTimeOut);
+//            if (socket.isConnected()){
+//                connected = true;
+//                socket.close();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            socket = null;
+//        }
+//        return connected;
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
