@@ -127,6 +127,7 @@ public class Login extends Fragment {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     editor = preferences.edit();
                     editor.putString("EMAILID",loginid);
+                    editor.putString("PWD",loginpassword);
                     editor.commit();
                     String str=preferences.getString("EMAILID","");
                     Log.e(TAG, "Preferences string: "+str );

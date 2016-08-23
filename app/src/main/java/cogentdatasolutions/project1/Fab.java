@@ -392,6 +392,8 @@ public class Fab extends Activity {
 //                file1 = new File(Environment.getExternalStorageDirectory(),file_1);
                 fileBody1 = new FileBody(file1);
                 reqEntity.addPart("image",fileBody1);
+                Log.e(TAG, "file : " + fileBody1);
+
                 connection.addRequestProperty("content-length",reqEntity.getContentLength()+"");
                 connection.addRequestProperty(reqEntity.getContentType().getName(),reqEntity.getContentType().getValue());
                 OutputStream os = connection.getOutputStream();
