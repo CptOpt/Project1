@@ -144,9 +144,9 @@ public class Login extends Fragment {
 
     public class LoginServerTask extends AsyncTask<String, String, String> {
 
-        HttpURLConnection connection = null;
+         HttpURLConnection connection = null;
          BufferedReader bufferedReader;
-       URL url;
+         URL url;
          InputStream inputStream;
 
         @Override
@@ -216,10 +216,9 @@ public class Login extends Fragment {
                 try {
                     JSONObject jobj = new JSONObject(finalJson);
                     Log.e(TAG, "Response Json: "+jobj );
-                    String str = (String) jobj.get("status");
+                    String str = (String)jobj.get("status");
                     if (str.equals("true")) {
-
-                        String msg=jobj.getString("msg");
+                        String msg =jobj.getString("msg");
                         Toast.makeText(getContext(), msg, Toast.LENGTH_LONG).show();
                          empid=(String)jobj.get("employeeId");
                         Log.e(TAG, "EmployeeId: "+empid );
@@ -232,10 +231,12 @@ public class Login extends Fragment {
 //                        FragmentTransaction ft = getFragmentManager().beginTransaction();
 //                        ft.replace(R.id.register_frag,frag);
 //
-                    }else
-                    errmsg=(String)jobj.get("err_msg");
-                    Log.e(TAG, "ErrorMsg: "+errmsg );
+                    }else if(str.equals("false"))
+                    {
+                        errmsg=(String)jobj.get("err_msg");
+                        Log.e(TAG, "ErrorMsg: "+errmsg );
                         Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace ();
                 }

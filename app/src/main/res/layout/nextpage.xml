@@ -40,7 +40,8 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
       <Button
           android:layout_width="50dp"
           android:layout_height="50dp"
-          android:id="@+id/btnloc"/>
+          android:id="@+id/btnloc"
+          android:visibility="invisible"/>
 
     </android.support.v7.widget.Toolbar>
     <RelativeLayout

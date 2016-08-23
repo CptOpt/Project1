@@ -40,7 +40,7 @@ import java.util.Locale;
 public class EditDetails extends AppCompatActivity
 {
     private static final String TAG = Register.class.getSimpleName();
-
+    SharedPreferences.Editor editor;
     private JSONObject jsonObject1,jsonObject2 = null;
     private HttpURLConnection connection = null;
     private BufferedReader bufferedReader = null;
@@ -130,6 +130,15 @@ public class EditDetails extends AppCompatActivity
             case R.id.settings:
                 Intent i1=new Intent(EditDetails.this,Settings.class);
                 startActivity(i1);
+                break;
+            case R.id.Logout:
+                Intent i2=new Intent(EditDetails.this,MainActivity.class);
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                editor = preferences.edit();
+                editor.clear();
+                editor.commit();
+
+                startActivity(i2);
                 break;
         }
         return true;

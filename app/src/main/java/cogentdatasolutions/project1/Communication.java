@@ -85,6 +85,7 @@ public class Communication extends Activity
         savechanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                new CommunicationJSONTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/updateCommunicationSettings");
 
             }
         });
@@ -114,7 +115,7 @@ public class Communication extends Activity
                 visibilitystatus1=0;
             }
             alertstatus=Integer.toString(visibilitystatus1);
-            Log.e(TAG, "Visibilitystatus: " + alertstatus);
+             Log.e(TAG, "Visibilitystatus: " + alertstatus);
             //notification
             if (selectedmailnotification.equals("on"))
             {
@@ -215,7 +216,7 @@ public class Communication extends Activity
                 String jsonObj = jsonObject1.toString();
                 Log.e(TAG, "doInBackground: " + jsonObj);
                 //Header
-                connection.setRequestProperty("communicationDetails", "" + jsonObj);
+                connection.setRequestProperty("updateCommunicationDetails", "" + jsonObj);
                 connection.connect();
                 inputStream = connection.getInputStream();
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));

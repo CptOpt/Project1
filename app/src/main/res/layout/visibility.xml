@@ -10,6 +10,7 @@
         android:id="@+id/headng"
         android:textSize="25dp"
         android:textStyle="bold"
+
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp" />
@@ -28,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="italic"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Your profile will be visible in our database to recruiters.Recruiters contact you for Suitable job Oppurtunity"/>
         <RadioButton
             android:layout_width="match_parent"
@@ -38,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="italic"
+            android:textColor="@color/colorPrimaryDark"
             android:text="Your Profile will be visible in our database,but recruiters will be informed that your not actively looking for jobs.recruiters may still contact you for job Oppurtunity. "/>
     </RadioGroup>
     <Button

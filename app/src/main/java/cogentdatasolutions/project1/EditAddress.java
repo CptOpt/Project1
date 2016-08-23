@@ -174,6 +174,7 @@ public class EditAddress extends Activity
                     String str = (String) jobj.get("status");
                     if (str.equals("updated successfully")) {
                         Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+                        finish();
 
                     } else
                         msg=(String)jobj.get("err_msg");

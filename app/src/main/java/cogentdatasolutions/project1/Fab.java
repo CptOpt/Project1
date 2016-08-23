@@ -73,8 +73,8 @@ public class Fab extends Activity {
     String response,empid;
     private JSONObject jsonObject1 = null;
     String errmsg,resumeerr;
-    //String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume";
-    String myUrl="http://10.80.15.119:8088/RestFulJerseyWebserviceApplication/RestFulJersey/webservice/pdf";
+    String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume";
+   // String myUrl="http://10.80.15.119:8088/RestFulJerseyWebserviceApplication/RestFulJersey/webservice/pdf";
     private static final String TAG = Fab.class.getSimpleName();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -347,8 +347,8 @@ public class Fab extends Activity {
                        bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
                     //   Log.e(TAG, "Response Json: " + "decoded");
                        profilePic.setImageBitmap(bitmap);
-                       Log.e(TAG, "Response Json: " + "imagesetted");
-                       Toast.makeText(Fab.this,msg,Toast.LENGTH_LONG).show();
+                       Log.e(TAG, "Response Json: " + "imagesetted" );
+                                                                                                                                                                                                                                                                                       Toast.makeText(Fab.this,msg,Toast.LENGTH_LONG).show();
                     }else
                          errmsg=jobj.getString("err_msg");
                     Toast.makeText(Fab.this,errmsg,Toast.LENGTH_LONG).show();

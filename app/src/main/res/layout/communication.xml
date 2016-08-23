@@ -8,12 +8,14 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/serviceheading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Services"
             android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"/>
         <TextView
@@ -21,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
@@ -176,6 +179,7 @@
                 android:layout_height="wrap_content"
                 android:text="Services"
                 android:textSize="20dp"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:layout_marginLeft="20dp"/>
             <TextView
@@ -183,6 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Calls/Sms"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:layout_above="@+id/notifications1"
@@ -308,6 +313,7 @@
     android:layout_marginTop="15dp"
     android:id="@+id/communicationsavechanges"
     android:text="@string/savechanges"
+
     android:layout_height="wrap_content" />
     </RelativeLayout>
 

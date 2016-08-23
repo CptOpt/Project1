@@ -28,7 +28,8 @@
         android:layout_height="300dp"
         android:inputType="text"
 
-        android:background="@drawable/border"
+        android:background="@drawable/edittxtstyles"
+        android:layout_marginBottom="10dp"
         android:id="@+id/editText"
         android:gravity="start"
         android:layout_centerVertical="true"

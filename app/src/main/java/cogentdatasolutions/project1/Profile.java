@@ -45,7 +45,7 @@ public class Profile extends Fragment {
 
 
                     Intent i=new Intent(getActivity(),Signin.class);
-                signin.setEnabled(false);
+              //  signin.setEnabled(false);
                     startActivity(i);
 
 

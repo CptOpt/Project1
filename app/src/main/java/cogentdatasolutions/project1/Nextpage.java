@@ -65,11 +65,11 @@ public class Nextpage extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nextpage);
-
        locbtn= (Button) findViewById(R.id.btnloc);
         locbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 new GetAddress().execute(latitude,longitude);
 
             }
@@ -84,11 +84,10 @@ public class Nextpage extends AppCompatActivity implements
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
-
         setSupportActionBar(jobtoolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Jobs");
-      jobtoolbar.inflateMenu(R.menu.searchjob);
+        jobtoolbar.inflateMenu(R.menu.searchjob);
       //  toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
           //  @Override
          //   public boolean onMenuItemClick(MenuItem item) {
@@ -98,8 +97,6 @@ public class Nextpage extends AppCompatActivity implements
        // });
 
      locationtoolbar  = (Toolbar) findViewById(R.id.locationtoolbar);
-
-
       locationtoolbar.inflateMenu(R.menu.searchlocation);
        // toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
          //   @Override

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cogentdatasolutions.project1">
-
     <supports-screens android:resizeable="true"/>
-    <supports-screens android:smallScreens="true"/>
+    <supports-screens android:smallScreens="true"
+        android:normalScreens="true"
+        android:xlargeScreens="true"
+        android:largeScreens="true"/>
 
 <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -11,27 +13,17 @@
     <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-
-
-
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splashscreen"
-            >
+        <activity android:name=".Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -45,8 +37,6 @@
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"></meta-data>
         </activity>
-
-
 <activity android:name=".EditDetails"></activity>
         <activity android:name=".EditAddress"></activity>
         <activity android:name=".Fab"/>
@@ -56,8 +46,5 @@
         <activity android:name=".Settings"/>
         <activity android:name=".VisibilitySettings"/>
         <activity android:name=".Communication"/>
-
-<!--<activity an-->
     </application>
-
 </manifest>

@@ -128,13 +128,13 @@ public class Changepassword extends Activity
 
                     if (responseValue.matches("true")){
                         String responsemsgtrue = resObj.getString("msg");
-                        Toast.makeText(getApplicationContext(),responsemsgtrue, Toast.LENGTH_LONG).show();;
-
+                        Toast.makeText(getApplicationContext(),responsemsgtrue, Toast.LENGTH_LONG).show();
+                        finish();
 
 
                     }else {
                        String responsemsgfalse = resObj.getString("error_msg");
-                        Toast.makeText(getApplicationContext(), responsemsgfalse , Toast.LENGTH_LONG).show();;
+                        Toast.makeText(getApplicationContext(), responsemsgfalse , Toast.LENGTH_LONG).show();
                        // Log.e(TAG, "Response Msg: "+responsemsgfalse );
                     }
 
@@ -142,7 +142,7 @@ public class Changepassword extends Activity
                     e.printStackTrace();
                 }
             } else{
-                Toast.makeText(getApplicationContext(), "Server failed Try again later", Toast.LENGTH_LONG).show();;
+                Toast.makeText(getApplicationContext(), "Server failed Try again later", Toast.LENGTH_LONG).show();
             }
             dialog.dismiss();
         }

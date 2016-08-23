@@ -4,6 +4,8 @@
     android:id="@+id/changepassword"/>
     <item android:title="Settings"
         android:id="@+id/settings"/>
+    <item android:title="Logout"
+        android:id="@+id/Logout"/>
 
 
 </menu>
