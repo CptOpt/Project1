@@ -73,7 +73,7 @@ public class Fab extends Activity {
     String response,empid;
     private JSONObject jsonObject1 = null;
     String errmsg,resumeerr;
-    String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume";
+
    // String myUrl="http://10.80.15.119:8088/RestFulJerseyWebserviceApplication/RestFulJersey/webservice/pdf";
     private static final String TAG = Fab.class.getSimpleName();
     @Override
@@ -94,6 +94,7 @@ public class Fab extends Activity {
         mail  = prefs.getString("EMAILID","");
         //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         empid = prefs.getString("EMPID","");
+
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +135,8 @@ public class Fab extends Activity {
         downloadFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId="+empid+"&mail="+mail+"";
+                Log.e(TAG, "URL IS: "+myUrl );
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myUrl));
                 // DownloadManager .Request request=new DownloadManager()
                 request.setTitle("File Download");
@@ -464,61 +467,61 @@ public class Fab extends Activity {
                 Toast.makeText(getApplicationContext(), "Server Failed...", Toast.LENGTH_SHORT).show();
         }
     }
-    public class FileDwnloadAsyn extends AsyncTask<Void,Void,Void> {
-
-        private JSONObject jsonObject1;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                URL url = new URL(myUrl);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoOutput(true);
-                connection.setRequestMethod("POST");
-             //   connection.setRequestProperty("employeeId",empid);
-                jsonObject1 = new JSONObject();
-                jsonObject1.put("employeeId", ""+ empid);
-                String jsonObj = jsonObject1.toString();
-                Log.e(TAG, "doInBackground: " + jsonObj);
-                //Header
-                connection.setRequestProperty("resumeDetails", "" + jsonObj);
-                connection.connect();
-
-                File rootDirectory = new File(Environment.getExternalStoragePublicDirectory
-                        (Environment.DIRECTORY_DOWNLOADS), "My Downloads");
-                if (!rootDirectory.exists()) {
-                    rootDirectory.mkdirs();
-                }
-
-                String nameOfTheFile = URLUtil.guessFileName(myUrl, null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
-                File file = new File(rootDirectory, nameOfTheFile);
-                file.createNewFile();
-
-                InputStream stream = connection.getInputStream();
-                FileOutputStream outputStream = new FileOutputStream(file);
-                byte[] buffer = new byte[1024];
-                int bytecount = 0;
-                while ((bytecount = stream.read(buffer)) > 0) {
-                    outputStream.write(buffer, 0, bytecount);
-                }
-                outputStream.close();
-                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                intent.setData(Uri.fromFile(file));
-                sendBroadcast(intent);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            Toast.makeText(getApplicationContext(), "Completed", Toast.LENGTH_SHORT).show();
-            super.onPostExecute(result);
-        }
-    }
+//    public class FileDwnloadAsyn extends AsyncTask<Void,Void,Void> {
+//
+//        private JSONObject jsonObject1;
+//
+//        @Override
+//        protected Void doInBackground(Void... params) {
+//            try {
+//                URL url = new URL(myUrl);
+//                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//                connection.setDoOutput(true);
+//                connection.setRequestMethod("POST");
+//             //   connection.setRequestProperty("employeeId",empid);
+//                jsonObject1 = new JSONObject();
+//                jsonObject1.put("employeeId", ""+ empid);
+//                String jsonObj = jsonObject1.toString();
+//                Log.e(TAG, "doInBackground: " + jsonObj);
+//                //Header
+//                connection.setRequestProperty("resumeDetails", "" + jsonObj);
+//                connection.connect();
+//
+//                File rootDirectory = new File(Environment.getExternalStoragePublicDirectory
+//                        (Environment.DIRECTORY_DOWNLOADS), "My Downloads");
+//                if (!rootDirectory.exists()) {
+//                    rootDirectory.mkdirs();
+//                }
+//
+//                String nameOfTheFile = URLUtil.guessFileName(myUrl, null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
+//                File file = new File(rootDirectory, nameOfTheFile);
+//                file.createNewFile();
+//
+//                InputStream stream = connection.getInputStream();
+//                FileOutputStream outputStream = new FileOutputStream(file);
+//                byte[] buffer = new byte[1024];
+//                int bytecount = 0;
+//                while ((bytecount = stream.read(buffer)) > 0) {
+//                    outputStream.write(buffer, 0, bytecount);
+//                }
+//                outputStream.close();
+//                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+//                intent.setData(Uri.fromFile(file));
+//                sendBroadcast(intent);
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void result) {
+//            Toast.makeText(getApplicationContext(), "Completed", Toast.LENGTH_SHORT).show();
+//            super.onPostExecute(result);
+//        }
+//    }
   }
