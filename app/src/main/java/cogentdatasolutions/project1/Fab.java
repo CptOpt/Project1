@@ -126,6 +126,7 @@ public class Fab extends Activity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 new UploadpdfTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/employeeResumeUpload");
             }
         });
@@ -134,7 +135,7 @@ public class Fab extends Activity {
             @Override
             public void onClick(View v) {
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myUrl));
-                // DownloadManager.Request request=new DownloadManager()
+                // DownloadManager .Request request=new DownloadManager()
                 request.setTitle("File Download");
                 request.setDescription("file is being downloaded....");
                 request.allowScanningByMediaScanner();
@@ -210,13 +211,13 @@ public class Fab extends Activity {
                     if (requestCode == 2) {
                         Uri selectdFileUri = data.getData();
                         file1 = new File(selectdFileUri.getPath());
-                        //   Log.e(TAG, "File: " + file1.getName());
+                          Log.e(TAG, "File: " + file1.getName());
                         uploadedFileName = file1.getName();
-                        //  Log.e(TAG, "FILE NAME: " + uploadedFileName);
+                         Log.e(TAG, "FILE NAME: " + uploadedFileName);
                         tokens = new StringTokenizer(uploadedFileName, ":");
                         first = tokens.nextToken();
                         file_1 = tokens.nextToken().trim();
-                        // Log.e(TAG, "FILE 1: " + file_1);
+                        Log.e(TAG, "FILE 1: " + file_1);
                     }
                 } catch (Exception e){
                     e.printStackTrace();
