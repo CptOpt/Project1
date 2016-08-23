@@ -28,6 +28,8 @@ import java.net.URL;
  */
 public class Communication extends Activity
 {
+    private static String ON = "On";
+//    private static String OFF = "Off";
     private static final String TAG = Register.class.getSimpleName();
     private JSONObject jsonObject1,jsonObject2 = null;
     private HttpURLConnection connection = null;
@@ -64,7 +66,7 @@ public class Communication extends Activity
         clientmailon= (RadioButton) findViewById(R.id.onbuttonE3);
         clientmailoff=(RadioButton) findViewById(R.id.offbuttonE3);
         paidmailon= (RadioButton) findViewById(R.id.onbuttonE4);
-      paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
+        paidmailoff=(RadioButton) findViewById(R.id.offbuttonE4);
         notificationsmson= (RadioButton) findViewById(R.id.onbuttonS1);
         notificationsmsoff=(RadioButton) findViewById(R.id.offbuttonS1);
         clientsmson= (RadioButton) findViewById(R.id.onbuttonS2);
@@ -106,7 +108,7 @@ public class Communication extends Activity
 
 //            Log.e(TAG, "Visibilitystatus: " + selectedmailalert);
 //        alert
-            if (selectedmailalert.equals("on"))
+            if (selectedmailalert.equals(ON))
             {
                 visibilitystatus1=1;
             }
@@ -117,10 +119,8 @@ public class Communication extends Activity
             alertstatus=Integer.toString(visibilitystatus1);
              Log.e(TAG, "Visibilitystatus: " + alertstatus);
             //notification
-            if (selectedmailnotification.equals("on"))
+            if (selectedmailnotification.equals(ON))
             {
-
-
                 visibilitystatus2=1;
             }
             else
@@ -130,7 +130,7 @@ public class Communication extends Activity
             notificationstaus=Integer.toString(visibilitystatus2);
             Log.e(TAG, "Visibilitystatus: " + notificationstaus);
             //client
-            if (selectedmailclient.equals("on"))
+            if (selectedmailclient.equals(ON))
             {
 
 
@@ -142,7 +142,7 @@ public class Communication extends Activity
             }
             clientstatus=Integer.toString(visibilitystatus3);
             //paidservices
-            if (selectedmailpaidservices.equals("on"))
+            if (selectedmailpaidservices.equals(ON))
             {
 
 
@@ -154,7 +154,7 @@ public class Communication extends Activity
             }
             paidservices=Integer.toString(visibilitystatus4);
             //sms
-            if (selectedsmsnotification.equals("on"))
+            if (selectedsmsnotification.equals(ON))
             {
 
 
@@ -165,7 +165,7 @@ public class Communication extends Activity
                 visibilitystatus5=0;
             }
             notificationstaus1=Integer.toString(visibilitystatus5);
-            if (selectedsmsclient.equals("on"))
+            if (selectedsmsclient.equals(ON))
             {
 
 
@@ -176,7 +176,7 @@ public class Communication extends Activity
                 visibilitystatus6=0;
             }
             clientstatus1=Integer.toString(visibilitystatus6);
-            if (selectedsmspaidservices.equals("on"))
+            if (selectedsmspaidservices.equals(ON))
             {
 
 
@@ -236,9 +236,7 @@ public class Communication extends Activity
 
                 return finalJson;
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             } finally {
                 if (connection != null) {
