@@ -32,6 +32,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Divya on 6/14/2016.
@@ -39,8 +41,8 @@ import java.net.URL;
 public class Login extends Fragment {
     private static final String TAG = Login.class.getSimpleName();
     EditText emailId, password,sample;
-   Button submit;
-   TextView textView;
+    Button submit;
+    TextView textView;
     String empid,errmsg;
     String loginid,loginpassword,mailtxt;
     String finalJson;
@@ -116,12 +118,15 @@ public class Login extends Fragment {
                 loginid=emailId.getText().toString();
                 loginpassword=password.getText().toString();
 
-                if(emailId.length()==0 && password.length()==0) {
+                if(emailId.length()==0) {
                     emailId.setError("Email cannot be blank");
-                    //emailId.setError(Html.fromHtml("<font color='green'>Hello</font>"));
+                } else if (password.length()==0){
                     password.setError("Password cannot be blank");
-                    //password.setError(Html.fromHtml("<font color='green'>Hello</font>"));
-                } else if(!Patterns.EMAIL_ADDRESS.matcher(emailId.getText().toString()).matches()){
+                } else if (!isValidPassword(loginpassword)){
+//                    password.setError("Password");
+                    Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(emailId.getText().toString()).matches()){
                     emailId.setError("Invalid Email Address");
                 }else {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -133,15 +138,25 @@ public class Login extends Fragment {
                     Log.e(TAG, "Preferences string: "+str );
                 new LoginServerTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/login");
 
-
             }
-
 
             }
         });
         return view;
+
+
     }
 
+    public boolean isValidPassword(final String password){
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+        return matcher.matches();
+
+    }
 
     public class LoginServerTask extends AsyncTask<String, String, String> {
 
@@ -153,21 +168,15 @@ public class Login extends Fragment {
         @Override
         protected String doInBackground(String... params) {
 
-
-
             try {
-
 
                 url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
-
 
                 connection.setRequestMethod("POST");
                 jsonObject1 = new JSONObject();
                 jsonObject1.put("loginid","" + loginid);
                 jsonObject1.put("loginpassword","" + loginpassword);
-
-
 
                 String jsonObj = jsonObject1.toString();
                 Log.e(TAG, "doInBackground: "+jsonObj );
@@ -281,7 +290,6 @@ public class Login extends Fragment {
                 while ((line = bufferedReader.readLine()) != null) {
                     buffer.append(line);
                 }
-
 
                 finalJson = buffer.toString();
                 Log.e(TAG, "RESPONSE FROM SERVER IS: "+finalJson);

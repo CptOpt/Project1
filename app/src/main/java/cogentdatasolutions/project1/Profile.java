@@ -37,7 +37,6 @@ public class Profile extends Fragment {
         });
         signin.setOnClickListener(
 
-
                 new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,9 +46,6 @@ public class Profile extends Fragment {
                     Intent i=new Intent(getActivity(),Signin.class);
               //  signin.setEnabled(false);
                     startActivity(i);
-
-
-
 
          }
         });
