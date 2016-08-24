@@ -122,9 +122,12 @@ public class Login extends Fragment {
                     emailId.setError("Email cannot be blank");
                 } else if (password.length()==0){
                     password.setError("Password cannot be blank");
-                } else if (!isValidPassword(loginpassword)){
+                } else if (password.length()<8||password.length()>70){
+                    Toast.makeText(getActivity(), "Password should contain minimum 8 characters and max 70 characters", Toast.LENGTH_LONG).show();
+                }
+                else if (!isValidPassword(loginpassword)){
 //                    password.setError("Password");
-                    Toast.makeText(getActivity(), "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Password Should contain Special Characters and numbers", Toast.LENGTH_LONG).show();
                 }
                 else if(!Patterns.EMAIL_ADDRESS.matcher(emailId.getText().toString()).matches()){
                     emailId.setError("Invalid Email Address");
@@ -132,7 +135,6 @@ public class Login extends Fragment {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     editor = preferences.edit();
                     editor.putString("EMAILID",loginid);
-                    editor.putString("PWD",loginpassword);
                     editor.commit();
                     String str=preferences.getString("EMAILID","");
                     Log.e(TAG, "Preferences string: "+str );
