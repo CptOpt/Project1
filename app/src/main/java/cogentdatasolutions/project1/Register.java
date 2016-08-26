@@ -72,20 +72,19 @@ public class Register extends Fragment {
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(emailAddress.getText().toString()).matches()) {
                     emailAddress.setError("Invalid Email Id");
                 } else if (password.length() < 8 || password.length() > 15) {
-                    password1.setError("password should be 8-15 charactes");
-                    password2.setError("password should be 8-15 charactes");
+                    password1.setError("password should be 8-15 characters");
+                    password2.setError("password should be 8-15 characters");
                 } else if (!password.trim().equals(confrmpaswrd.trim())) {
                     password1.setError("password and confirm password must be same");
                 } else {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("EMAILID",mail);
-                    editor.commit();
+                    editor.apply();
                     String str=preferences.getString("EMAILID","");
                     Log.e(TAG, "Preferences string: "+str );
 
                     new JSONTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/registration");
-
 
                 }
 
@@ -95,17 +94,13 @@ public class Register extends Fragment {
         return view;
     }
 
-
     private class JSONTask extends AsyncTask<String, String, String> {
 
 
         @Override
         protected String doInBackground(String... params) {
 
-
-
             try {
-
 
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
@@ -134,10 +129,8 @@ public class Register extends Fragment {
                     buffer.append(line);
                 }
 
-
                 finalJson = buffer.toString();
                 Log.e(TAG, "JSON Object" + finalJson);
-
 
                 return finalJson;
 
@@ -161,7 +154,6 @@ public class Register extends Fragment {
                     if (str.equals("true")) {
                         String msg=jobj.getString("msg");
                         Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
-
                     } else
                     errmsg=jobj.getString("err_msg");
                         Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
