@@ -125,7 +125,6 @@ public class Register extends Fragment {
 
     private class JSONTask extends AsyncTask<String, String, String> {
 
-
         @Override
         protected String doInBackground(String... params) {
 
@@ -186,7 +185,7 @@ public class Register extends Fragment {
                         Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
                         builder.setCancelable(false);
-                        builder.setTitle("Enter Your Mail Id");
+                        builder.setTitle("Enter Verification Code");
                         final EditText input=new EditText(getContext());
                         input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
                         builder.setView(input);
@@ -195,7 +194,7 @@ public class Register extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 vcode=input.getText().toString();
                                 // sample.setText(mailtxt);
-                                new VerifycodeJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/recoverpassword");
+                                new VerifycodeJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/verficationSubmission");
                             }
                         });
                         builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -286,7 +285,11 @@ public class Register extends Fragment {
                     e.printStackTrace();
                 }
             }
-
+            firstName.setText("");
+            lastName.setText("");
+            emailAddress.setText("");
+            password1.setText("");
+            password2.setText("");
             super.onPostExecute(result);
         }
     }

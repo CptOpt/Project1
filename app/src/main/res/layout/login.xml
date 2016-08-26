@@ -48,24 +48,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:text="login"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:layout_weight="1"
 
-            android:backgroundTintMode="add"
-
-            android:clickable="true"
-            android:id="@+id/submit"
-            android:focusableInTouchMode="true"
-            android:layout_above="@+id/textView"
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignEnd="@+id/textView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -76,6 +59,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/submit"
+            android:layout_above="@+id/textView"
             android:layout_centerHorizontal="true" />
         <!--<EditText
             android:layout_width="match_parent"

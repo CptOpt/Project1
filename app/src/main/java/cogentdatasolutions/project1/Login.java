@@ -144,8 +144,6 @@ public class Login extends Fragment {
             }
         });
         return view;
-
-
     }
 
     public boolean isValidPassword(final String password){
@@ -261,9 +259,9 @@ public class Login extends Fragment {
    public class ForgotPassTask extends AsyncTask<String,String,String>{
 
         HttpURLConnection connection = null;
-      BufferedReader bufferedReader;
-      URL url;
-         InputStream inputStream;
+        BufferedReader bufferedReader;
+        URL url;
+        InputStream inputStream;
 
 
         @Override
@@ -285,13 +283,11 @@ public class Login extends Fragment {
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
                 StringBuilder buffer = new StringBuilder();
-
                 String line;
 
                 while ((line = bufferedReader.readLine()) != null) {
                     buffer.append(line);
                 }
-
                 finalJson = buffer.toString();
                 Log.e(TAG, "RESPONSE FROM SERVER IS: "+finalJson);
                 return finalJson;
@@ -303,7 +299,6 @@ public class Login extends Fragment {
                     connection.disconnect();
                 }
             }
-
             return null;
         }
 
@@ -321,12 +316,10 @@ public class Login extends Fragment {
                     }else {
                         Toast.makeText(getActivity(),"invalid",Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
             super.onPostExecute(result);
         }
     }

@@ -73,7 +73,7 @@ public class Fab extends Activity {
     String response,empid;
     private JSONObject jsonObject1 = null;
     String errmsg,resumeerr;
-    String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume";
+//    String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId='"+empid+"'&mail='"+mail+"'";
    // String myUrl="http://10.80.15.119:8088/RestFulJerseyWebserviceApplication/RestFulJersey/webservice/pdf";
     private static final String TAG = Fab.class.getSimpleName();
     @Override
@@ -133,10 +133,14 @@ public class Fab extends Activity {
         downloadFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String myUrl = "http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId="+empid+"&mail="+mail+"";
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myUrl));
+                Log.e(TAG, "Download Url"+myUrl );
                 // DownloadManager.Request request=new DownloadManager()
                 request.setTitle("File Download");
                 request.setDescription("file is being downloaded....");
+//                request.addRequestHeader("resumeDetails","");
                 request.allowScanningByMediaScanner();
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                 String nameOfTheFile = URLUtil.guessFileName(myUrl, null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
@@ -462,6 +466,8 @@ public class Fab extends Activity {
         }
     }
     public class FileDwnloadAsyn extends AsyncTask<Void,Void,Void> {
+
+        private String myUrl = "http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId="+empid+"&mail="+mail+"";
 
         private JSONObject jsonObject1;
 
