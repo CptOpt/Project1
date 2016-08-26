@@ -89,6 +89,9 @@
        android:text="Register"
        android:id="@+id/register"
        android:background="@drawable/edittxtstyles"
+
+
+
        android:layout_gravity="center"
        android:focusableInTouchMode="true"
        android:layout_below="@id/linearLayout"

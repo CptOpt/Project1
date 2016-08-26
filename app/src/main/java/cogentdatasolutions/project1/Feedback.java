@@ -131,7 +131,7 @@ public class Feedback extends Activity {
                     if (str.equals("true")) {
                         msg=jobj.getString("msg");
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
-
+                       finish();
                     } else
                     errmsg=jobj.getString("err_msg");
                         Toast.makeText(getApplicationContext(), errmsg, Toast.LENGTH_SHORT).show();
@@ -140,6 +140,7 @@ public class Feedback extends Activity {
                 }
             }
             super.onPostExecute(result);
+
          }
     }
 

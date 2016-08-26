@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
                 int tabIconColor = ContextCompat.getColor(getApplicationContext(),R.color.tabSelected);
                 tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
-
                 pager.setCurrentItem(tab.getPosition());
             }
 

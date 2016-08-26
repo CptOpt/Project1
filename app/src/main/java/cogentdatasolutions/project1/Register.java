@@ -86,6 +86,7 @@ public class Register extends Fragment {
 
                     new JSONTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/registration");
 
+
                 }
 
             }
@@ -100,6 +101,8 @@ public class Register extends Fragment {
 
         @Override
         protected String doInBackground(String... params) {
+
+
 
             try {
 

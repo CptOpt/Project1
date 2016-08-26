@@ -67,6 +67,7 @@ public class Login extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                builder.setCancelable(false);
                 builder.setTitle("Enter Your Mail Id");
                 final EditText input=new EditText(getContext());
                 input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
@@ -153,7 +154,6 @@ public class Login extends Fragment {
         Pattern pattern;
         Matcher matcher;
         final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
-
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
         return matcher.matches();
