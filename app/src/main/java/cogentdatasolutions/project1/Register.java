@@ -1,5 +1,6 @@
 package cogentdatasolutions.project1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -8,6 +9,8 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -44,7 +47,7 @@ public class Register extends Fragment {
     URL url = null;
     private EditText firstName, lastName, emailAddress, password1, password2;
     String fname,lname, mail, password, confrmpaswrd;
-    String finalJson,errmsg;
+    String finalJson,errmsg,vcode;
 
 
     @Nullable
@@ -181,6 +184,27 @@ public class Register extends Fragment {
                     if (str.equals("true")) {
                         String msg=jobj.getString("msg");
                         Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                        builder.setCancelable(false);
+                        builder.setTitle("Enter Your Mail Id");
+                        final EditText input=new EditText(getContext());
+                        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                        builder.setView(input);
+                        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                vcode=input.getText().toString();
+                                // sample.setText(mailtxt);
+                                new VerifycodeJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/recoverpassword");
+                            }
+                        });
+                        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.show();
                     } else
                     errmsg=jobj.getString("err_msg");
                         Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
@@ -188,6 +212,81 @@ public class Register extends Fragment {
                     e.printStackTrace();
                 }
             }
+            super.onPostExecute(result);
+        }
+    }
+    public class VerifycodeJson extends AsyncTask<String,String,String>{
+
+        HttpURLConnection connection = null;
+        BufferedReader bufferedReader;
+        URL url;
+        InputStream inputStream;
+
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+
+                jsonObject2 = new JSONObject();
+                jsonObject2.put("verificationCode", ""+vcode);
+
+                String jsonObj2 = jsonObject2.toString();
+
+                connection.setRequestProperty("forgotpassworddetails", ""+jsonObj2);
+                connection.connect();
+                inputStream = connection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                StringBuilder buffer = new StringBuilder();
+
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                finalJson = buffer.toString();
+                Log.e(TAG, "RESPONSE FROM SERVER IS: "+finalJson);
+                return finalJson;
+
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection!=null){
+                    connection.disconnect();
+                }
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (finalJson!=null){
+                try {
+                    JSONObject jsonobj=new JSONObject(finalJson);
+                    Log.e(TAG, "JSON OBJECT FROM SERVER: "+jsonobj);
+                    String str=jsonobj.getString("status");
+                    if (str.equals("true"))
+                    {
+
+                            String msg=jsonobj.getString("msg");
+                            Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
+
+                        }else {
+                        errmsg=jsonobj.getString("err_msg");
+                        Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
             super.onPostExecute(result);
         }
     }
