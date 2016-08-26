@@ -39,6 +39,7 @@ import java.util.regex.Pattern;
  * Created by Divya on 6/14/2016.
  */
 public class Login extends Fragment {
+
     private static final String TAG = Login.class.getSimpleName();
     EditText emailId, password,sample;
     Button submit;
@@ -52,16 +53,14 @@ public class Login extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         final View view = inflater.inflate(R.layout.login,container,false);
 
         emailId = (EditText) view.findViewById(R.id.emailId);
         password = (EditText) view.findViewById(R.id.password);
         submit = (Button) view.findViewById(R.id.submit);
+
         textView = (TextView) view.findViewById(R.id.textView);
-
-
-
-
         textView.setOnClickListener(
                 new View.OnClickListener() {
             @Override
@@ -127,7 +126,6 @@ public class Login extends Fragment {
                     Toast.makeText(getActivity(), "Password should contain minimum 8 characters and max 70 characters", Toast.LENGTH_LONG).show();
                 }
                 else if (!isValidPassword(loginpassword)){
-//                    password.setError("Password");
                     Toast.makeText(getActivity(), "Password Should contain Special Characters and numbers", Toast.LENGTH_LONG).show();
                 }
                 else if(!Patterns.EMAIL_ADDRESS.matcher(emailId.getText().toString()).matches()){

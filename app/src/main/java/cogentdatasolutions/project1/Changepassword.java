@@ -33,9 +33,7 @@ public class Changepassword extends Activity
     private Button btn;
     private String response;
     private TextView tv;
-    String email,password;
-    String currentpwdstr,newpwdstr;
-    SharedPreferences.Editor editor;
+    String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,24 +45,13 @@ public class Changepassword extends Activity
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         email  = prefs.getString("EMAILID","");
-        password=prefs.getString("PWD","");
         Log.e(TAG, "EmailAddress: "+email );
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentpwdstr = et1.getText().toString();
-                newpwdstr = et2.getText().toString();
-                if(!password.equals(currentpwdstr))
-                {
-                    et1.setError("current password doesn't match");
-                }
 
-               else
-                {
+                new ResetPwd().execute("http://10.80.15.119:8080/OptnCpt/rest/service/changepassword");
 
-                    new ResetPwd().execute("http://10.80.15.119:8080/OptnCpt/rest/service/changepassword");
-
-                }
             }
         });
     }
@@ -75,9 +62,8 @@ public class Changepassword extends Activity
         BufferedReader reader;
         JSONObject jsonObject;
 
-
-//        currentpwdstr = et1.getText().toString();
-//         newpwdstr = et2.getText().toString();
+        String currentpwdstr = et1.getText().toString();
+        String newpwdstr = et2.getText().toString();
 //        String confpwdstr = et3.getText().toString();
 
 
@@ -143,11 +129,6 @@ public class Changepassword extends Activity
                     if (responseValue.matches("true")){
                         String responsemsgtrue = resObj.getString("msg");
                         Toast.makeText(getApplicationContext(),responsemsgtrue, Toast.LENGTH_LONG).show();
-                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        editor = preferences.edit();
-                        //  editor.putString("EMAILID",loginid);
-                        editor.putString("PWD",newpwdstr);
-                        editor.commit();
                         finish();
 
 

@@ -132,8 +132,6 @@ public class Communication extends Activity
             //client
             if (selectedmailclient.equals(ON))
             {
-
-
                 visibilitystatus3=1;
             }
             else
@@ -144,8 +142,6 @@ public class Communication extends Activity
             //paidservices
             if (selectedmailpaidservices.equals(ON))
             {
-
-
                 visibilitystatus4=1;
             }
             else
@@ -156,8 +152,6 @@ public class Communication extends Activity
             //sms
             if (selectedsmsnotification.equals(ON))
             {
-
-
                 visibilitystatus5=1;
             }
             else
@@ -167,8 +161,6 @@ public class Communication extends Activity
             notificationstaus1=Integer.toString(visibilitystatus5);
             if (selectedsmsclient.equals(ON))
             {
-
-
                 visibilitystatus6=1;
             }
             else
@@ -178,8 +170,6 @@ public class Communication extends Activity
             clientstatus1=Integer.toString(visibilitystatus6);
             if (selectedsmspaidservices.equals(ON))
             {
-
-
                 visibilitystatus7=1;
             }
             else
@@ -193,10 +183,7 @@ public class Communication extends Activity
         @Override
         protected String doInBackground(String... params) {
 
-
-
             try {
-
 
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
@@ -232,7 +219,6 @@ public class Communication extends Activity
 
                 finalJson = buffer.toString();
                 Log.e(TAG, "JSON Object" + finalJson);
-
 
                 return finalJson;
 
@@ -301,10 +287,7 @@ public class Communication extends Activity
         @Override
         protected String doInBackground(String... params) {
 
-
-
             try {
-
 
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
@@ -312,8 +295,6 @@ public class Communication extends Activity
                 connection.setRequestMethod("POST");
                 jsonObject1 = new JSONObject();
                 jsonObject1.put("employeeId", "" + empid);
-
-
 
                 String jsonObj = jsonObject1.toString();
                 Log.e(TAG, "doInBackground: " + jsonObj);
@@ -331,10 +312,8 @@ public class Communication extends Activity
                     buffer.append(line);
                 }
 
-
                 finalJson = buffer.toString();
                 Log.e(TAG, "JSON Object" + finalJson);
-
 
                 return finalJson;
 

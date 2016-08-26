@@ -68,11 +68,11 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:inputType="textPersonName"
-            android:hint="FullName"
+            android:hint="Last Name"
             android:gravity="center"
-             android:textSize="15dp"
+            android:textSize="15dp"
             android:layout_marginBottom="15dp"
-            android:id="@+id/fullname"
+            android:id="@+id/lastNameReg"
             android:background="@drawable/edittxtstyles"
             android:layout_above="@+id/emailAddress"
             android:layout_alignParentRight="true"
@@ -80,6 +80,21 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:hint="First Name"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/firstNameReg"
+            android:background="@drawable/edittxtstyles"
+            android:layout_below="@id/firstname"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
