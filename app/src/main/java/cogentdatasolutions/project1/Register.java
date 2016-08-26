@@ -186,24 +186,24 @@ public class Register extends Fragment {
                         Toast.makeText(getContext(),msg, Toast.LENGTH_SHORT).show();
                         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
                         builder.setCancelable(false);
-                        builder.setTitle("Enter Your Mail Id");
+                        builder.setTitle("Enter Verification Code");
                         final EditText input=new EditText(getContext());
-                        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                        input.setInputType(InputType.TYPE_CLASS_TEXT);
                         builder.setView(input);
                         builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 vcode=input.getText().toString();
                                 // sample.setText(mailtxt);
-                                new VerifycodeJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/recoverpassword");
+                                new VerifycodeJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/verificationSubmission");
                             }
                         });
-                        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
+//                        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.cancel();
+//                            }
+//                        });
                         builder.show();
                     } else
                     errmsg=jobj.getString("err_msg");
@@ -231,12 +231,12 @@ public class Register extends Fragment {
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
 
-                jsonObject2 = new JSONObject();
-                jsonObject2.put("verificationCode", ""+vcode);
+//                jsonObject2 = new JSONObject();
+//                jsonObject2.put("verificationCode", ""+vcode);
+//
+//                String jsonObj2 = jsonObject2.toString();
 
-                String jsonObj2 = jsonObject2.toString();
-
-                connection.setRequestProperty("forgotpassworddetails", ""+jsonObj2);
+                connection.setRequestProperty("verificationCode", ""+vcode);
                 connection.connect();
                 inputStream = connection.getInputStream();
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -253,7 +253,7 @@ public class Register extends Fragment {
                 Log.e(TAG, "RESPONSE FROM SERVER IS: "+finalJson);
                 return finalJson;
 
-            } catch (IOException | JSONException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 if (connection!=null){
