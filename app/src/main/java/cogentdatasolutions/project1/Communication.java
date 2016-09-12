@@ -73,8 +73,6 @@ public class Communication extends Activity
         clientsmsoff=(RadioButton) findViewById(R.id.offbuttonS2);
         paidsmson= (RadioButton) findViewById(R.id.onbuttonS3);
         paidsmsoff=(RadioButton) findViewById(R.id.offbuttonS3);
-
-
         mailalerts=(RadioGroup)findViewById(R.id.jobalertgrp);
         mailimpnotifications=(RadioGroup)findViewById(R.id.impNotifctngrp);
         mailclient=(RadioGroup)findViewById(R.id.clientgrp);

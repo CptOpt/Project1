@@ -73,8 +73,8 @@ public class Fab extends Activity {
     String response,empid;
     private JSONObject jsonObject1 = null;
     String errmsg,resumeerr;
-//    String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId='"+empid+"'&mail='"+mail+"'";
-   // String myUrl="http://10.80.15.119:8088/RestFulJerseyWebserviceApplication/RestFulJersey/webservice/pdf";
+    //    String myUrl="http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId='"+empid+"'&mail='"+mail+"'";
+    // String myUrl="http://10.80.15.119:8088/RestFulJerseyWebserviceApplication/RestFulJersey/webservice/pdf";
     private static final String TAG = Fab.class.getSimpleName();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,7 +136,7 @@ public class Fab extends Activity {
 
                 String myUrl = "http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId="+empid+"&mail="+mail+"";
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(myUrl));
-                Log.e(TAG, "Download Url"+myUrl );
+
                 // DownloadManager.Request request=new DownloadManager()
                 request.setTitle("File Download");
                 request.setDescription("file is being downloaded....");
@@ -206,8 +206,8 @@ public class Fab extends Activity {
                 cursor.close();
                 bitmap = BitmapFactory.decodeFile(picturePath);
 
-               // profilePic.setImageBitmap(bitmap);
-              //  System.out.println("pic is setting");
+                // profilePic.setImageBitmap(bitmap);
+                //  System.out.println("pic is setting");
                 new UploadImageTask().execute();
             } else{
                 try {
@@ -238,7 +238,7 @@ public class Fab extends Activity {
         cursor.moveToFirst();
         return cursor.getString(column_index);
     }
-//    private void showFileChooser() {
+    //    private void showFileChooser() {
 //        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
 //        intent.setType("application/*");
 //        intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -275,7 +275,7 @@ public class Fab extends Activity {
                 String reqHead = "Accept:application/json";
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("connection","Keep-Alive"+reqHead);
-              //  connection.setRequestProperty("mail",""+mail);
+                //  connection.setRequestProperty("mail",""+mail);
                 connection.setRequestProperty("employeeId",""+empid);
                 // connection.setRequestProperty("mail",mail);
                 //Header header = new Header();
@@ -337,24 +337,24 @@ public class Fab extends Activity {
 
             dialog.dismiss();
             if (response!=null) {
-              //  profilePic.setImageBitmap(bitmap);
+                //  profilePic.setImageBitmap(bitmap);
                 JSONObject jobj = null;
                 try {
                     jobj = new JSONObject(response);
                     String stat=jobj.getString("status");
-                   if (stat.equals("true")){
+                    if (stat.equals("true")){
                         String msg=jobj.getString("msg");
-                       Toast.makeText(Fab.this,msg,Toast.LENGTH_LONG).show();
-                      String imggggg=jobj.getString("Image");
-                       byte[] byteArray =  Base64.decode(jobj.getString("Image"), Base64.DEFAULT) ;
-                       Log.e(TAG, "Response Json: " + imggggg);
-                       bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
-                    //   Log.e(TAG, "Response Json: " + "decoded");
-                       profilePic.setImageBitmap(bitmap);
-                       Log.e(TAG, "Response Json: " + "imagesetted" );
-                                                                                                                                                                                                                                                                                       Toast.makeText(Fab.this,msg,Toast.LENGTH_LONG).show();
+                        Toast.makeText(Fab.this,msg,Toast.LENGTH_LONG).show();
+                        String imggggg=jobj.getString("Image");
+                        byte[] byteArray =  Base64.decode(jobj.getString("Image"), Base64.DEFAULT) ;
+                        Log.e(TAG, "Response Json: " + imggggg);
+                        bitmap = BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
+                        //   Log.e(TAG, "Response Json: " + "decoded");
+                        profilePic.setImageBitmap(bitmap);
+                        Log.e(TAG, "Response Json: " + "imagesetted" );
+                        Toast.makeText(Fab.this,msg,Toast.LENGTH_LONG).show();
                     }else
-                         errmsg=jobj.getString("err_msg");
+                        errmsg=jobj.getString("err_msg");
                     Toast.makeText(Fab.this,errmsg,Toast.LENGTH_LONG).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -362,7 +362,7 @@ public class Fab extends Activity {
 
                 Log.e(TAG, "Response Json: " + jobj);
 
-               // Toast.makeText(getApplicationContext(), "Files Uploaded..", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), "Files Uploaded..", Toast.LENGTH_SHORT).show();
             } else
                 Toast.makeText(getApplicationContext(), "Server Failed...", Toast.LENGTH_SHORT).show();
         }
@@ -389,7 +389,7 @@ public class Fab extends Activity {
                 String reqHead = "Accept:application/json";
                 connection.setRequestMethod("POST");
                 connection.setRequestProperty("connection","Keep-Alive"+reqHead);
-               // connection.setRequestProperty("mail",""+mail);
+                // connection.setRequestProperty("mail",""+mail);
                 connection.setRequestProperty("employeeId",""+empid);
 
                 MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
@@ -465,63 +465,5 @@ public class Fab extends Activity {
                 Toast.makeText(getApplicationContext(), "Server Failed...", Toast.LENGTH_SHORT).show();
         }
     }
-    public class FileDwnloadAsyn extends AsyncTask<Void,Void,Void> {
 
-        private String myUrl = "http://10.80.15.119:8080/OptnCpt/rest/service/downloadResume?employeeId="+empid+"&mail="+mail+"";
-
-        private JSONObject jsonObject1;
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                URL url = new URL(myUrl);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoOutput(true);
-                connection.setRequestMethod("POST");
-             //   connection.setRequestProperty("employeeId",empid);
-                jsonObject1 = new JSONObject();
-                jsonObject1.put("employeeId", ""+ empid);
-                String jsonObj = jsonObject1.toString();
-                Log.e(TAG, "doInBackground: " + jsonObj);
-                //Header
-                connection.setRequestProperty("resumeDetails", "" + jsonObj);
-                connection.connect();
-
-                File rootDirectory = new File(Environment.getExternalStoragePublicDirectory
-                        (Environment.DIRECTORY_DOWNLOADS), "My Downloads");
-                if (!rootDirectory.exists()) {
-                    rootDirectory.mkdirs();
-                }
-
-                String nameOfTheFile = URLUtil.guessFileName(myUrl, null, MimeTypeMap.getFileExtensionFromUrl(myUrl));
-                File file = new File(rootDirectory, nameOfTheFile);
-                file.createNewFile();
-
-                InputStream stream = connection.getInputStream();
-                FileOutputStream outputStream = new FileOutputStream(file);
-                byte[] buffer = new byte[1024];
-                int bytecount = 0;
-                while ((bytecount = stream.read(buffer)) > 0) {
-                    outputStream.write(buffer, 0, bytecount);
-                }
-                outputStream.close();
-                Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                intent.setData(Uri.fromFile(file));
-                sendBroadcast(intent);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            Toast.makeText(getApplicationContext(), "Completed", Toast.LENGTH_SHORT).show();
-            super.onPostExecute(result);
-        }
-    }
-  }
+}

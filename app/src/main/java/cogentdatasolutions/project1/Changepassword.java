@@ -2,6 +2,7 @@ package cogentdatasolutions.project1;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import okhttp3.internal.DiskLruCache;
+
 /**
  * Created by madhu on 26-Jul-16.
  */
@@ -31,9 +34,11 @@ public class Changepassword extends Activity
     private static final String TAG = Changepassword.class.getSimpleName();
     private EditText et1,et2;
     private Button btn;
+    SharedPreferences.Editor editor;
     private String response;
     private TextView tv;
-    String email;
+    String email,password;
+    String currentpwdstr,newpwdstr;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +50,22 @@ public class Changepassword extends Activity
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         email  = prefs.getString("EMAILID","");
+        password = prefs.getString("PWD","");
         Log.e(TAG, "EmailAddress: "+email );
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                new ResetPwd().execute("http://10.80.15.119:8080/OptnCpt/rest/service/changepassword");
+                currentpwdstr = et1.getText().toString();
+                newpwdstr = et2.getText().toString();
+                if (!password.equals(currentpwdstr))
+                {
+                    et1.setError("Current Password Doesn't Match");
+
+                }else{
+                    new ResetPwd().execute("http://10.80.15.119:8080/OptnCpt/rest/service/changepassword");
+
+                }
 
             }
         });
@@ -62,8 +77,6 @@ public class Changepassword extends Activity
         BufferedReader reader;
         JSONObject jsonObject;
 
-        String currentpwdstr = et1.getText().toString();
-        String newpwdstr = et2.getText().toString();
 //        String confpwdstr = et3.getText().toString();
 
 
@@ -119,6 +132,7 @@ public class Changepassword extends Activity
         @Override
         protected void onPostExecute(String aVoid) {
             super.onPostExecute(aVoid);
+
             if (response!=null){
                 try {
                     JSONObject resObj = new JSONObject(response);
@@ -128,9 +142,12 @@ public class Changepassword extends Activity
 
                     if (responseValue.matches("true")){
                         String responsemsgtrue = resObj.getString("msg");
+                        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        editor = preferences.edit();
+                        editor.putString("PWD",newpwdstr);
+                        editor.commit();
                         Toast.makeText(getApplicationContext(),responsemsgtrue, Toast.LENGTH_LONG).show();
                         finish();
-
 
                     }else {
                        String responsemsgfalse = resObj.getString("error_msg");

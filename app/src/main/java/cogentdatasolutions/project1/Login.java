@@ -3,7 +3,6 @@ package cogentdatasolutions.project1;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -29,8 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -76,7 +73,7 @@ public class Login extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         mailtxt=input.getText().toString();
                        // sample.setText(mailtxt);
-                        new ForgotPassTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/recoverpassword");
+                        new ForgotPassTask().execute("http://10.80.15.119:8080/OptnCpt/rest/service/recoverPassword");
                     }
                 });
                 builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
@@ -134,6 +131,7 @@ public class Login extends Fragment {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                     editor = preferences.edit();
                     editor.putString("EMAILID",loginid);
+                    editor.putString("PWD",loginpassword);
                     editor.commit();
                     String str=preferences.getString("EMAILID","");
                     Log.e(TAG, "Preferences string: "+str );
@@ -277,7 +275,7 @@ public class Login extends Fragment {
 
                 String jsonObj2 = jsonObject2.toString();
 
-                connection.setRequestProperty("forgotpassworddetails", ""+jsonObj2);
+                connection.setRequestProperty("forgotPasswordDetails", ""+jsonObj2);
                 connection.connect();
                 inputStream = connection.getInputStream();
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -312,9 +310,16 @@ public class Login extends Fragment {
                     String str=jsonobj.getString("status");
                     if (str.equals("true"))
                     {
-                     Toast.makeText(getActivity(),"send to server",Toast.LENGTH_SHORT).show();
+                        String msg =jsonobj.getString("msg");
+                        Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+                        Intent i=new Intent(getActivity(),Forgototp.class);
+                        startActivity(i);
+
                     }else {
-                        Toast.makeText(getActivity(),"invalid",Toast.LENGTH_SHORT).show();
+                        errmsg=(String)jsonobj.get("err_msg");
+                        Log.e(TAG, "ErrorMsg: "+errmsg );
+                        Toast.makeText(getContext(), errmsg, Toast.LENGTH_SHORT).show();
+
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

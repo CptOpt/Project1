@@ -22,42 +22,52 @@
            android:id="@+id/client"
            android:layout_below="@id/headng"
            android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-
+           android:layout_height="40dp"
+           android:textSize="15dp"
+           android:padding="10dp"
+           android:background="@drawable/edittxtstyles"
            android:layout_marginBottom="10dp"
            android:hint="Client"/>
         <EditText
             android:id="@+id/protitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Project Title"
-        android:layout_marginBottom="10dp"
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:background="@drawable/edittxtstyles"
+            android:layout_marginBottom="10dp"
             android:layout_below="@id/client"/>
         <EditText
             android:id="@+id/fromdate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="From Date"
-
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:background="@drawable/edittxtstyles"
             android:layout_marginBottom="10dp"
             android:layout_below="@id/protitle"/>
         <EditText
             android:id="@+id/todate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="To Date"
-
+            android:textSize="15dp"
+            android:background="@drawable/edittxtstyles"
+            android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:layout_below="@id/fromdate"/>
         <EditText
             android:id="@+id/prolocation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Project Location"
-
+            android:textSize="15dp"
+            android:background="@drawable/edittxtstyles"
+            android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:layout_below="@id/todate"/>
-
         <LinearLayout
             android:id="@+id/layout3"
             android:layout_width="match_parent"
@@ -82,6 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Full Time "
+                    android:checked="true"
                     android:layout_marginLeft="40dp"/>
                 <RadioButton
                     android:id="@+id/fulltime"
@@ -110,10 +121,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="300dp"
-
+            android:padding="10dp"
             android:gravity="start"
             android:id="@+id/prodescrptn"
-            android:background="@drawable/border"
+            android:background="@drawable/edittxtstyles"
             android:layout_marginBottom="10dp"
             android:layout_below="@+id/textview1"/>
 
@@ -122,23 +133,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Role"
-
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:background="@drawable/edittxtstyles"
             android:layout_marginBottom="10dp"
             android:layout_below="@+id/prodescrptn"
             />
         <EditText
             android:id="@+id/teamsize"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:hint="Team Size"
-
+            android:textSize="15dp"
+            android:padding="10dp"
+            android:background="@drawable/edittxtstyles"
             android:layout_marginBottom="10dp"
             android:layout_below="@id/role"/>
         <EditText
             android:id="@+id/skills"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
+            android:layout_height="40dp"
+            android:textSize="15dp"
+            android:background="@drawable/edittxtstyles"
+            android:padding="10dp"
             android:layout_marginBottom="10dp"
             android:hint="Skills Used"
             android:layout_below="@+id/teamsize"
@@ -148,6 +165,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginLeft="25dp"
             android:layout_below="@+id/skills">
 
             <Button
@@ -155,7 +173,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save Changes"
-                android:layout_marginRight="70dp"/>
+                android:layout_marginRight="40dp"/>
             <Button
                 android:id="@+id/cancel"
                 android:layout_width="wrap_content"

@@ -26,8 +26,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:inputType="text"
-
+        android:padding="10dp"
         android:background="@drawable/edittxtstyles"
         android:layout_marginBottom="10dp"
         android:id="@+id/editText"

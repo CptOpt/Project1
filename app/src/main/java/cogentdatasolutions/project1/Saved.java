@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +23,19 @@ public class Saved extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.saved,container,false);
         tabLayout = (TabLayout) view.findViewById(R.id.innerTab);
-        tabLayout.addTab(tabLayout.newTab().setText("My Saved Jobs"));tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addTab(tabLayout.newTab().setText("My Saved Jobs").setIcon(R.drawable.savedjobs));
+        tabLayout.addTab(tabLayout.newTab().setText("Applied Jobs").setIcon(R.drawable.myjob));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        final ViewPager viewpager = (ViewPager)view.findViewById(R.id.view1);
+        final MyJobAdapter myJobsAdapter = new MyJobAdapter(getFragmentManager(),tabLayout.getTabCount());
+        viewpager.setAdapter(myJobsAdapter);
+        viewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int tabIconColor = ContextCompat.getColor(getActivity(),R.color.tabSelected);
                 tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
-               // pager.setCurrentItem(tab.getPosition());
+               viewpager.setCurrentItem(tab.getPosition());
             }
 
             @Override
@@ -42,8 +50,7 @@ public class Saved extends Fragment
 
             }
         });
-        tabLayout.addTab(tabLayout.newTab().setText("My Jobs"));
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
         return view;
 
     }

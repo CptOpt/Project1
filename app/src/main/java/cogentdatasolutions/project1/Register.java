@@ -124,6 +124,11 @@ public class Register extends Fragment {
 
 
     private class JSONTask extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            mail = emailAddress.getText().toString();
+            super.onPreExecute();
+        }
 
         @Override
         protected String doInBackground(String... params) {
@@ -187,22 +192,22 @@ public class Register extends Fragment {
                         builder.setCancelable(false);
                         builder.setTitle("Enter Verification Code");
                         final EditText input=new EditText(getContext());
-                        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+                        input.setInputType(InputType.TYPE_CLASS_TEXT);
                         builder.setView(input);
                         builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 vcode=input.getText().toString();
                                 // sample.setText(mailtxt);
-                                new VerifycodeJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/verficationSubmission");
+                                new VerifycodeJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/verificationSubmission");
                             }
                         });
-                        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
+//                        builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.cancel();
+//                            }
+//                        });
                         builder.show();
                     } else
                     errmsg=jobj.getString("err_msg");
@@ -232,10 +237,11 @@ public class Register extends Fragment {
 
                 jsonObject2 = new JSONObject();
                 jsonObject2.put("verificationCode", ""+vcode);
-
+                jsonObject2 .put("mail",""+mail);
+                Log.e(TAG, "RESPONSE FROM SERVER IS: "+mail);
                 String jsonObj2 = jsonObject2.toString();
 
-                connection.setRequestProperty("forgotpassworddetails", ""+jsonObj2);
+                connection.setRequestProperty("verificationCodeDetails", ""+jsonObj2);
                 connection.connect();
                 inputStream = connection.getInputStream();
                 bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -247,12 +253,13 @@ public class Register extends Fragment {
                 while ((line = bufferedReader.readLine()) != null) {
                     buffer.append(line);
                 }
-
                 finalJson = buffer.toString();
                 Log.e(TAG, "RESPONSE FROM SERVER IS: "+finalJson);
                 return finalJson;
 
-            } catch (IOException | JSONException e) {
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             } finally {
                 if (connection!=null){
@@ -285,11 +292,7 @@ public class Register extends Fragment {
                     e.printStackTrace();
                 }
             }
-            firstName.setText("");
-            lastName.setText("");
-            emailAddress.setText("");
-            password1.setText("");
-            password2.setText("");
+
             super.onPostExecute(result);
         }
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -34,54 +35,46 @@ public class EditAddress extends Activity
     private HttpURLConnection connection = null;
     private BufferedReader bufferedReader = null;
     private InputStream inputStream = null;
+    TextView tv;
     URL url = null;
     String msg;
 
     String finalJson,empid;
 
-    EditText adressLine,adreesLine1,streetName,streetName1,pincode,pincode1;
+    EditText eadressLine,eadreesLine1,estreetName,estreetName1,epincode,epincode1;
     Button submit;
     AutoCompleteTextView pState,pCountry,tState,tCountry;
     String adress,adress1,street,street1,pin,pin1,country,country1,state,state1;
+    String jadress,jadress1,jstreet,jstreet1,jpin,jpin1,jcountry,jcountry1,jstate,jstate1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editaddress);
-        Intent i=getIntent();
-        Bundle extras=i.getExtras();
-        adress=extras.getString("A1");
-        Log.e(TAG,"value"+adress);
-        adress1=extras.getString("A2");
-        street=extras.getString("ST1");
-        street1=extras.getString("ST2");
-        country=extras.getString("C1");
-        country1=extras.getString("C2");
-        state=extras.getString("S1");
-        state1=extras.getString("S2");
-        pin=extras.getString("P1");
-        pin1=extras.getString("P2");
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        empid = prefs.getString("EMPID","");
+        tv=(TextView)findViewById(R.id.txt);
+        eadressLine  = (EditText)findViewById(R.id.addrline);
+          //eadressLine.setText("namekkkuhjhhx");
+        eadreesLine1 = (EditText)findViewById(R.id.addrline1);
 
-        adressLine  = (EditText)findViewById(R.id.addrline);
-          adressLine.setText(adress);
-        adreesLine1 = (EditText)findViewById(R.id.addrline1);
-          adreesLine1.setText(adress1);
-        streetName = (EditText)findViewById(R.id.streetname);
-        streetName.setText(street);
-        streetName1 = (EditText)findViewById(R.id.streetname1);
-        streetName1.setText(street1);
-        pincode = (EditText)findViewById(R.id.pincode);
-        pincode.setText(pin);
-        pincode1 = (EditText)findViewById(R.id.pincode1);
-        pincode1.setText(pin1);
+        estreetName = (EditText)findViewById(R.id.streetname);
+
+        estreetName1 = (EditText)findViewById(R.id.streetname1);
+
+        epincode = (EditText)findViewById(R.id.pincode);
+
+        epincode1 = (EditText)findViewById(R.id.pincode1);
+
         pState = (AutoCompleteTextView)findViewById(R.id.statespinner);
-        pState.setText(state1);
+
         pCountry = (AutoCompleteTextView)findViewById(R.id.countriesSpinner);
-        pCountry.setText(country1);
+
         tState = (AutoCompleteTextView)findViewById(R.id.statespinner1);
-        tState.setText(state);
+
         tCountry = (AutoCompleteTextView)findViewById(R.id.countriesSpinner1);
-        tCountry.setText(country);
+        new GettingEditAddressJson().execute("http://10.80.15.119:8080/OptnCpt/rest/service/DisplayEmployeeAddresses");
+
         submit= (Button) findViewById(R.id.submit);
         submit.setOnClickListener(
                 new View.OnClickListener() {
@@ -92,19 +85,18 @@ public class EditAddress extends Activity
 
             }
         });
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        empid = prefs.getString("EMPID","");
+
 
     }
     private class EditAddressJson extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
-            adress=adressLine.getText().toString();
-            adress1=adreesLine1.getText().toString();
-            street=streetName.getText().toString();
-            street1=streetName1.getText().toString();
-            pin=pincode.getText().toString();
-            pin1=pincode1.getText().toString();
+            adress=eadressLine.getText().toString();
+            adress1=eadreesLine1.getText().toString();
+            street=estreetName.getText().toString();
+            street1=estreetName1.getText().toString();
+            pin=epincode.getText().toString();
+            pin1=epincode1.getText().toString();
             super.onPreExecute();
         }
 
@@ -117,7 +109,6 @@ public class EditAddress extends Activity
                 URL url = new URL(params[0]);
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
-
                 jsonObject1 = new JSONObject();
                 jsonObject1.put("addressLine1", "" + adress);
                 jsonObject1.put("addressLine2", "" + adress1);
@@ -177,6 +168,118 @@ public class EditAddress extends Activity
                     } else
                         msg=(String)jobj.get("err_msg");
                         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            super.onPostExecute(result);
+        }
+    }
+    private class GettingEditAddressJson extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+
+            eadressLine  = (EditText)findViewById(R.id.addrline);
+            eadreesLine1 = (EditText)findViewById(R.id.addrline1);
+            estreetName = (EditText)findViewById(R.id.streetname);
+            estreetName1 = (EditText)findViewById(R.id.streetname1);
+            epincode = (EditText)findViewById(R.id.pincode);
+            epincode1 = (EditText)findViewById(R.id.pincode1);
+            pState = (AutoCompleteTextView)findViewById(R.id.statespinner);
+            pCountry = (AutoCompleteTextView)findViewById(R.id.countriesSpinner);
+            tState = (AutoCompleteTextView)findViewById(R.id.statespinner1);
+            tCountry = (AutoCompleteTextView)findViewById(R.id.countriesSpinner1);
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            try {
+                URL url = new URL(params[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+
+                jsonObject1 = new JSONObject();
+                jsonObject1.put("employeeId", empid);
+                String jsonObj = jsonObject1.toString();
+                Log.e(TAG, "doInBackground: " + jsonObj);
+                //Header
+                connection.setRequestProperty("empaddrdetails", "" + jsonObj);
+                connection.connect();
+                inputStream = connection.getInputStream();
+                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                StringBuilder buffer = new StringBuilder();
+
+                String line;
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+
+                finalJson = buffer.toString();
+                Log.e(TAG, "JSON Object" + finalJson);
+
+
+                return finalJson;
+
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            } finally {
+                if (connection != null) {
+                    connection.disconnect();
+                }
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if (finalJson != null) {
+                try {
+                    JSONObject jobj = new JSONObject(finalJson);
+                    Log.e(TAG, "Response Json: " + jobj);
+                    String str = (String) jobj.get("addrDetails");
+                    JSONObject parentjson=new JSONObject(str);
+                    if(parentjson.has("addressLine1"))
+                    {
+                        jadress=parentjson.getString("addressLine1");
+                        Log.e(TAG, "Response Json: " + jadress);
+                        jadress1=parentjson.getString("addressLine2");
+                        jstreet=parentjson.getString("streetName");
+                        jstreet1=parentjson.getString("streetName2");
+                        jstate=parentjson.getString("state1");
+                        jstate1=parentjson.getString("state2");
+                        jcountry=parentjson.getString("country1");
+                        jcountry1=parentjson.getString("country2");
+                        jpin=parentjson.getString("pincode1");
+                        jpin1=parentjson.getString("pincode2");
+                        eadressLine.setText(jadress);
+                        eadreesLine1.setError(jadress1);
+                        estreetName.setText(jstreet);
+                        estreetName1.setText(jstreet1);
+                        epincode1.setText(jpin1);
+                        epincode.setText(jpin);
+                        tState.setText(jstate);
+                        pState.setText(jstate1);
+                        tCountry.setText(jcountry);
+                        pCountry.setText(jcountry1);
+                    } else{
+                        eadressLine.setText("");
+                        eadreesLine1.setText("");
+                        estreetName.setText("");
+                        estreetName1.setText("");
+                        epincode.setText("");
+                        epincode1.setText("");
+                        tState.setText("");
+                        pState.setText("");
+                        tCountry.setText("");
+                        pCountry.setText("");
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

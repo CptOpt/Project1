@@ -113,9 +113,9 @@ public class Nextpage extends AppCompatActivity implements
 
 
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Jobs"));
-        tabLayout.addTab(tabLayout.newTab().setText("Companies"));
-        tabLayout.addTab(tabLayout.newTab().setText("Salaries"));
+        tabLayout.addTab(tabLayout.newTab().setText("Jobs").setIcon(R.drawable.work));
+        tabLayout.addTab(tabLayout.newTab().setText("Companies").setIcon(R.drawable.company));
+        tabLayout.addTab(tabLayout.newTab().setText("Salaries").setIcon(R.drawable.salary));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -128,11 +128,15 @@ public class Nextpage extends AppCompatActivity implements
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(),R.color.tabSelected);
+                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+                pager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
+                int tabIconColor = ContextCompat.getColor(getApplicationContext(),R.color.tabUnSelected);
+                tab.getIcon().setColorFilter(tabIconColor,PorterDuff.Mode.SRC_IN);
 
             }
 

@@ -1,15 +1,12 @@
 package cogentdatasolutions.project1;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 /**
  * Created by Divya on 6/13/2016.
@@ -53,7 +50,7 @@ public class Profile extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Intent i=new Intent(getActivity(),EditDetails.class);
+                Intent i=new Intent(getActivity(),Editprfff.class);
                 startActivity(i);
             }
         });
