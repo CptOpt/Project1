@@ -3,34 +3,72 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/homeic"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/viewprofile"
+            android:icon="@drawable/ic_viewprofile"
+            android:title="View Profile" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/updateprofile"
+            android:icon="@drawable/ic_update"
+            android:title="Update Profile" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/profilesummary"
+            android:icon="@drawable/ic_profilesummary"
+            android:title="Profile Summary" />
+        <item
+            android:id="@+id/uploadpic"
+            android:icon="@drawable/ic_uploadpic"
+            android:title="Upload Photo" />
+        <item
+            android:id="@+id/uploadres"
+            android:icon="@drawable/ic_resume"
+            android:title="Upload Resume" />
+        <item
+            android:id="@+id/addprojects"
+            android:icon="@drawable/ic_addprojects"
+            android:title="Add Projects" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Jobs $ Applications">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/savedjobs"
+                android:icon="@drawable/ic_savedjobs"
+                android:title="Saved Jobs" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/appliedjobs"
+                android:icon="@drawable/ic_appliedjob"
+                android:title="Applied Jobs" />
         </menu>
     </item>
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:id="@+id/visibility"
+                android:icon="@drawable/ic_visibility"
+                android:title="Visibility Settings" />
+            <item
+                android:id="@+id/contactsettings"
+                android:icon="@drawable/ic_contactsettings"
+                android:title="Contact Settings" />
+            <item
+                android:id="@+id/changepwd"
+                android:icon="@drawable/ic_changepasswrd"
+                android:title="Change Password" />
+        </menu>
+    </item>
+    <item android:title="Review ">
+        <menu>
+            <item
+                android:id="@+id/review"
+                android:icon="@drawable/ic_review"
+                android:title="Write a Review" />
+
+        </menu>
+    </item>
+
 
 </menu>

@@ -50,7 +50,7 @@ public class Profile extends Fragment {
             @Override
             public void onClick(View v)
             {
-                Intent i=new Intent(getActivity(),Editprfff.class);
+                Intent i=new Intent(getActivity(),Editprofile1.class);
                 startActivity(i);
             }
         });

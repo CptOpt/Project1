@@ -46,7 +46,7 @@
         <activity android:name=".AddProject" />
         <activity android:name=".Changepassword" />
         <activity android:name=".Settings" />
-        <activity android:name=".Editprfff"/>
+        <activity android:name=".Editprofile1"/>
         <activity android:name=".VisibilitySettings" />
         <activity android:name=".Communication" />
         <activity android:name=".ResetPassword" />

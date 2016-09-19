@@ -132,17 +132,32 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.homeic) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.viewprofile) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.updateprofile) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.profilesummary) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.uploadpic) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.uploadresume) {
+
+        }
+        else if (id == R.id.addprojects) {
+
+        } else if (id == R.id.savedjobs) {
+
+        } else if (id == R.id.appliedjobs) {
+
+        }else if (id == R.id.visibility) {
+
+        } else if (id == R.id.contactsettings) {
+
+        } else if (id == R.id.changepassword) {
+
+        }else if (id == R.id.review) {
 
         }
 
