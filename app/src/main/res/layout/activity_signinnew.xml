@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:theme="@style/AlertDialog.AppCompat.Light"
+    tools:context="cogentdatasolutions.project1.Signinnew">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       app:title="Sign In"
+        android:id="@+id/signtoolbar"
+        android:background="@color/colorPrimaryDark"></android.support.v7.widget.Toolbar>
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:layout_below="@+id/signtoolbar"
+
+     android:layout_marginTop="85dp"
+     android:layout_marginLeft="10dp"
+     android:layout_marginRight="10dp"
+     android:id="@+id/linearLayout3">
+     <android.support.design.widget.TextInputLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+
+        android:layout_marginBottom="20dp"
+         app:hintTextAppearance="@style/MyHintText"
+         android:id="@+id/layout_loginmail">
+         <EditText
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/input_logimmail"
+             android:textSize="15dp"
+             app:theme="@style/MyEditText"
+             android:hint="Email Id"/>
+
+     </android.support.design.widget.TextInputLayout>
+     <android.support.design.widget.TextInputLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="10dp"
+         android:id="@+id/layout_loginpasswrd"
+         app:hintTextAppearance="@style/MyHintText">
+
+         <EditText
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/input_loginpasswrd"
+             app:theme="@style/MyEditText"
+             android:textSize="15dp"
+             android:hint="Password"/>
+     </android.support.design.widget.TextInputLayout>
+ </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signinbtn"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:text="Sign In"
+        android:textSize="17dp"
+        android:textColor="@color/tabSelected"
+        android:layout_marginTop="64dp"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FORGOT PASSWORD"
+        android:layout_marginTop="15dp"
+        android:textStyle="bold"
+        android:clickable="true"
+        android:textSize="12sp"
+        android:id="@+id/forgotpasswrd"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
