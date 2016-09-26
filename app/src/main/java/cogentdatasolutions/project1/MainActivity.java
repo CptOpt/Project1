@@ -158,7 +158,6 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.addprojects) {
             Intent i7=new Intent(MainActivity.this,AddProject.class);
             startActivity(i7);
-
         } else if (id == R.id.savedjobs1) {
 
       fragmentManager.beginTransaction().replace(R.id.content_frame,new MySaved()).commit();
