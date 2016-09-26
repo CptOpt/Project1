@@ -1,15 +1,14 @@
 package cogentdatasolutions.project1;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -130,32 +129,54 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        FragmentManager fragmentManager=getSupportFragmentManager();
         int id = item.getItemId();
 
         if (id == R.id.homeic) {
-            // Handle the camera action
+            {
+
+
+            }
         } else if (id == R.id.viewprofile) {
+            Intent i=new Intent(MainActivity.this,Fab.class);
+          startActivity(i);
+
 
         } else if (id == R.id.updateprofile) {
+            Intent i5=new Intent(MainActivity.this,Editprofile1.class);
+            startActivity(i5);
 
         } else if (id == R.id.profilesummary) {
+
 
         } else if (id == R.id.uploadpic) {
 
         } else if (id == R.id.uploadresume) {
-
+            Intent i1=new Intent(MainActivity.this,Editprofile1.class);
+            startActivity(i1);
         }
         else if (id == R.id.addprojects) {
+            Intent i7=new Intent(MainActivity.this,AddProject.class);
+            startActivity(i7);
 
-        } else if (id == R.id.savedjobs) {
+        } else if (id == R.id.savedjobs1) {
 
-        } else if (id == R.id.appliedjobs) {
+      fragmentManager.beginTransaction().replace(R.id.content_frame,new MySaved()).commit();
 
-        }else if (id == R.id.visibility) {
+        } else if (id == R.id.appliedjobs1) {
+     fragmentManager.beginTransaction().replace(R.id.content_frame,new MyJobs()).commit();
+        }else if (id == R.id.visibility)
+        {
+            Intent i2=new Intent(MainActivity.this,VisibilitySettings.class);
+            startActivity(i2);
 
         } else if (id == R.id.contactsettings) {
+            Intent i3=new Intent(MainActivity.this,Communication.class);
+            startActivity(i3);
 
-        } else if (id == R.id.changepassword) {
+        } else if (id == R.id.changepwd) {
+            Intent i4=new Intent(MainActivity.this,Changepassword.class);
+            startActivity(i4);
 
         }else if (id == R.id.review) {
 

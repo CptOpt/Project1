@@ -33,12 +33,12 @@ public class ProfileAdapter extends FragmentStatePagerAdapter
                 PersonalDetails personalDetails=new PersonalDetails();
                 return personalDetails;
             case 4:
+                AddressDetails addressDetails=new AddressDetails();
+                return addressDetails;
+            case 5:
                 Preferences preferences=new Preferences();
                 return preferences;
-            case 5:
 
-            AddressDetails addressDetails=new AddressDetails();
-            return addressDetails;
         }
         return null;
     }

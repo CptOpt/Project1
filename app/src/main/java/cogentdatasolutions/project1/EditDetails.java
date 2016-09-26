@@ -116,7 +116,7 @@ public class EditDetails extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.changepassword:
+            case R.id.changepassword1:
                 Intent i=new Intent(EditDetails.this,Changepassword.class);
                 startActivity(i);
                 break;

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 /**
  * Created by Hari Krishna on 6/20/2016.
  */
-public class MyJobs extends Fragment {
+public class MyJobs extends Fragment{
 
     @Nullable
     @Override

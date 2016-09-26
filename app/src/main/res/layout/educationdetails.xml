@@ -2,16 +2,84 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="30dp"
+    android:orientation="vertical"
     android:weightSum="1">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Education Details"
-        android:id="@+id/textView5"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:layout_weight="0.81"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorPrimaryDark"
+       android:layout_gravity="center"
         android:textSize="30sp" />
+ <Spinner
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/graduation"></Spinner>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/MyEditText"
+        android:id="@+id/layout_gstartdate">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Start Date"
+            android:focusable="false"
+            android:textSize="15dp"
+            app:theme="@style/MyEditText"
+            android:id="@+id/input_gstartdate"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/MyEditText"
+        android:id="@+id/layout_genddate">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="End Date"
+            android:focusable="false"
+            android:textSize="15dp"
+            app:theme="@style/MyEditText"
+            android:id="@+id/input_genddate"/>
+    </android.support.design.widget.TextInputLayout>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/specialisation"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"></Spinner>
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/university"
+        android:layout_marginBottom="10dp"
+        android:hint=" Enter University"/>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/MyEditText"
+        android:id="@+id/layout_cpa">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter CPA / GPA"
+        android:textSize="15dp"
+        app:theme="@style/MyEditText"
+        android:id="@+id/input_cpa"/>
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitEdudetails"
+        android:layout_gravity="center"
+        android:textColor="@color/tabSelected"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="10dp"
+        />
 </LinearLayout>

@@ -127,33 +127,22 @@ android:layout_below="@+id/linearname"
                 android:hint="Confirm Password"/>
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
-    <LinearLayout
+    <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearjobseeker"
-        android:layout_below="@id/linearLayout"
-         android:layout_marginBottom="10dp"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:id="@+id/jobseekerspinner"
 
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="15dp"
-            android:textSize="15dp"
-            android:text="I Am  "/>
-        <Spinner
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/joobseekertype"></Spinner>
-    </LinearLayout>
-    <LinearLayout
+        android:layout_below="@+id/linearLayout"
+        android:textSize="15dp"
+        android:gravity="center"
+       android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingRight="15dp"
+        android:textColorHint="#000000"/>
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearjobseeker"
+        android:layout_below="@+id/jobseekerspinner"
         android:id="@+id/lineardescribes"
         android:layout_marginBottom="10dp"
         android:orientation="vertical">
@@ -165,19 +154,24 @@ android:layout_below="@+id/linearname"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:text="What Best Describes You? "
             android:textSize="15dp"/>
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:id="@+id/descrptn"></Spinner>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekerdescspinner"
+                android:hint="select"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColorHint="#000000"/>
 
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/register"
+        android:id="@+id/registerbtn"
         android:text="Register"
         android:layout_below="@+id/lineardescribes"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"

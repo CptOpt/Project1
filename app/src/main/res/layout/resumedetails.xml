@@ -2,12 +2,13 @@
  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D3D3D3">
+   >
    <Button
        android:layout_width="200dp"
        android:layout_height="200dp"
        android:background="@drawable/circularshape"
-       android:drawableTop="@drawable/downloadres"
+       android:textColor="@color/tabSelected"
+       android:drawableTop="@drawable/ic_downloadicon"
        android:paddingTop="40dp"
        android:text="Download Resume"
        android:paddingBottom="40dp"
@@ -21,9 +22,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Resume Details"
         android:id="@+id/textView5"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
         android:layout_weight="0.81"
+        android:layout_marginTop="10dp"
         android:textSize="30sp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -39,7 +42,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:layout_gravity="center_horizontal"
-        android:background="#ffffff"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/tabSelected"
         android:layout_marginBottom="154dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"

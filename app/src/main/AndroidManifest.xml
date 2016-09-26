@@ -12,16 +12,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission-sdk-23 android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/cptoptlogo"
-        android:label="CPTnOPT "
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Splashscreen">
@@ -55,19 +53,24 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme" />
-        <activity android:name=".RegisterNew"
-        android:parentActivityName=".Registration_SignIn"/>
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Registration_SignIn" />
-        <activity android:name=".Signinnew"
-            android:parentActivityName=".Registration_SignIn"/>
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Registration_SignIn" />
-        <activity android:name=".Registration_SignIn">
+        <activity
+            android:name=".RegisterNew"
+            android:parentActivityName=".Registration_SignIn" />
 
-        </activity>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Registration_SignIn" />
+
+        <activity
+            android:name=".Signinnew"
+            android:parentActivityName=".Registration_SignIn" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Registration_SignIn" />
+
+        <activity android:name=".Registration_SignIn"></activity>
+        <activity android:name=".Otp"></activity>
     </application>
 
 </manifest>

@@ -1,7 +1,5 @@
 package cogentdatasolutions.project1;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -40,7 +38,7 @@ public class Editprofile1 extends AppCompatActivity
                 tab.getIcon().setColorFilter(tabIconColor,PorterDuff.Mode.SRC_IN);
 //              int tabIconColor = ContextCompat.getColor(getApplicationContext(),getResources().getColor(R.color.newtabselected));
 //                tab.getIcon().setColorFilter(tabIconColor,PorterDuff.Mode.SRC_IN);
-                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.material_blue_500));
+                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.tabSelected));
 
 //                tabLayout.setTabTextColors(getResources().getColor(android.R.color.black),getResources().getColor(android.R.color.white));
                 viewPager.setCurrentItem(tab.getPosition());

@@ -35,11 +35,11 @@
     <item android:title="Jobs $ Applications">
         <menu>
             <item
-                android:id="@+id/savedjobs"
+                android:id="@+id/savedjobs1"
                 android:icon="@drawable/ic_savedjobs"
                 android:title="Saved Jobs" />
             <item
-                android:id="@+id/appliedjobs"
+                android:id="@+id/appliedjobs1"
                 android:icon="@drawable/ic_appliedjob"
                 android:title="Applied Jobs" />
         </menu>

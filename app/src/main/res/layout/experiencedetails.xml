@@ -1,10 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <EditText
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Experience Details"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center"
+           />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_jobtitle"
+            app:hintTextAppearance="@style/MyHintText">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_jobtitle"
+                android:hint="Job Title"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                />
 
-</LinearLayout>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_company"
+            app:hintTextAppearance="@style/MyHintText">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_company"
+                android:hint="Company"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_Startdate"
+            app:hintTextAppearance="@style/MyHintText">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_startdate"
+                android:hint="Start Date"
+                android:focusable="false"
+                app:theme="@style/MyEditText"
+                android:textSize="15dp"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_enddate"
+            app:hintTextAppearance="@style/MyHintText">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_Enddate"
+                android:hint="End Date"
+                android:focusable="false"
+                app:theme="@style/MyEditText"
+                android:textSize="15dp"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_description"
+            app:hintTextAppearance="@style/MyHintText">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:inputType="textMultiLine"
+                android:ems="10"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:hint="Job Description"
+                android:gravity="bottom"
+                android:id="@+id/input_descrptn" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/layout_salary"
+            app:hintTextAppearance="@style/MyHintText">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_salary"
+                android:inputType="numberDecimal"
+                android:hint="Annual Salary"
+                app:theme="@style/MyEditText"
+                android:textSize="15dp"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/submitexpdetails"
+    android:background="@color/colorPrimaryDark"
+    android:textColor="@color/tabSelected"
+    android:text="Submit"
+    android:textSize="15dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"/>
+    </LinearLayout>
+</ScrollView>

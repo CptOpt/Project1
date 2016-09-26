@@ -1,12 +1,8 @@
 package cogentdatasolutions.project1;
 
 import android.Manifest;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -14,21 +10,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -113,9 +101,9 @@ public class Nextpage extends AppCompatActivity implements
 
 
         final TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
-        tabLayout.addTab(tabLayout.newTab().setText("Jobs").setIcon(R.drawable.work));
-        tabLayout.addTab(tabLayout.newTab().setText("Companies").setIcon(R.drawable.company));
-        tabLayout.addTab(tabLayout.newTab().setText("Salaries").setIcon(R.drawable.salary));
+        tabLayout.addTab(tabLayout.newTab().setText("Jobs"));
+        tabLayout.addTab(tabLayout.newTab().setText("Companies"));
+        tabLayout.addTab(tabLayout.newTab().setText("Salaries"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -128,15 +116,18 @@ public class Nextpage extends AppCompatActivity implements
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int tabIconColor = ContextCompat.getColor(getApplicationContext(),R.color.tabSelected);
-                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+//                int tabIconColor = ContextCompat.getColor(getApplicationContext(),R.color.tabSelected);
+//                tab.getIcon().setColorFilter(tabIconColor, PorterDuff.Mode.SRC_IN);
+                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.tabSelected));
+                tabLayout.setTabTextColors(getResources().getColor(android.R.color.black),getResources().getColor(android.R.color.white));
                 pager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                int tabIconColor = ContextCompat.getColor(getApplicationContext(),R.color.tabUnSelected);
-                tab.getIcon().setColorFilter(tabIconColor,PorterDuff.Mode.SRC_IN);
+//                int tabIconColor = ContextCompat.getColor(getApplicationContext(),R.color.tabUnSelected);
+//                tab.getIcon().setColorFilter(tabIconColor,PorterDuff.Mode.SRC_IN);
+                tabLayout.setTabTextColors(getResources().getColor(android.R.color.white),getResources().getColor(android.R.color.black));
 
             }
 
