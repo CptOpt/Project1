@@ -3,8 +3,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context="cogentdatasolutions.project1.Registration_SignIn">
+    tools:context=".Activities.Registration_SignIn">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/tabUnSelected"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:paddingLeft="15dp"
+        android:gravity="center"
+        android:text="search jobs here......"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp"
+        android:id="@+id/textView6" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/searchlayout"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/textView6"
+        android:layout_centerHorizontal="true">
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:id="@+id/layout_jtitle">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_jtitle"
+                app:theme="@style/MyEditText"
+                android:textSize="15dp"
+                android:hint="Job Title"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginTop="10dp"
+            android:id="@+id/layout_Skills">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_skills"
+                app:theme="@style/MyEditText"
+                android:textSize="15dp"
+                android:hint="Skills"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:hintTextAppearance="@style/MyHintText"
+            android:id="@+id/layout_location">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/input_location"
+                app:theme="@style/MyEditText"
+                android:textSize="15dp"
+                android:hint="Location"/>
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/searchjobs"
+        android:text="SEARCH"
+       android:paddingRight="8dp"
+        android:alpha="0.7"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:gravity="center"
+
+        android:textColor="@color/tabSelected"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginBottom="121dp"
+        android:layout_above="@+id/linearLayout4"
+        android:layout_centerHorizontal="true" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -12,7 +92,8 @@
     android:gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout4">
     <Button
         android:layout_width="170dp"
         android:layout_height="50dp"

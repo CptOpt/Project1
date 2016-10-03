@@ -1,16 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="20dp">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginBottom="10dp"
         android:text="Address Details"
         android:id="@+id/textView5"
-        android:layout_gravity="center_vertical"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/tabSelected"
         android:gravity="center"
-        android:layout_weight="0.81"
+
         android:textSize="30sp" />
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_marginBottom="10dp"
+        app:hintTextAppearance="@style/MyHintText"
+        android:id="@+id/layout_addrline1">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="AddressLine1"
+            android:textSize="15dp"
+            app:theme="@style/MyEditText"
+            android:id="@+id/input_addrline1"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:hintTextAppearance="@style/MyHintText"
+        android:id="@+id/layout_addrline2">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="AddressLine2"
+            android:textSize="15dp"
+            app:theme="@style/MyEditText"
+            android:id="@+id/input_addrline2"/>
+    </android.support.design.widget.TextInputLayout>
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/currentLocation"
+        android:hint="Current Location"
+        android:textSize="15dp"
+        android:layout_marginBottom="10dp">
+    </AutoCompleteTextView>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:hintTextAppearance="@style/MyHintText"
+        android:id="@+id/layout_State">
+       <AutoCompleteTextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="Select State"
+           android:textSize="15dp"
+           android:id="@+id/stateAutocomplete"/>
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        app:hintTextAppearance="@style/MyHintText"
+        android:id="@+id/layout_Country">
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:hint="Select Country"
+            android:id="@+id/countryAutocomplete"/>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hintTextAppearance="@style/MyHintText"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/layout_pincode">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pincode"
+            android:textSize="15dp"
+            app:theme="@style/MyEditText"
+            android:id="@+id/input_pincode"/>
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/adresssubmit"
+        android:text="Submit"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="@color/tabSelected"
+        android:layout_gravity="center"/>
+
 
 </LinearLayout>

@@ -1,16 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Preferences"
-        android:id="@+id/textView5"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:layout_weight="0.81"
-        android:textSize="30sp" />
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/tabSelected"
+            android:background="@color/colorPrimaryDark"
+            android:text="Preferences"
+            android:id="@+id/textView5"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:textSize="30sp" />
 
-</LinearLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/layout_workauth">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Work Authorization"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_workauth"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/layout_visatype">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Visatype"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_visatype"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/layout_industrytype">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Industry Type"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_industrytype"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+
+            android:id="@+id/layout_functionalarea">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Functional Area"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_Functionalarea"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+
+            android:id="@+id/layout_role">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:hint="Role/Designation"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_role"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+
+            android:id="@+id/layout_DesiredjobType">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Desired JobType"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_desiredjobtype"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+
+            android:id="@+id/layout_DesiredCtc">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Desired CTC($)"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_desiredctc"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:hintTextAppearance="@style/MyHintText"
+            android:layout_marginBottom="10dp"
+
+            android:id="@+id/layout_salarytype">
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Salary Type"
+                android:textSize="15dp"
+                app:theme="@style/MyEditText"
+                android:id="@+id/input_salarytype"/>
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:textColor="@color/tabSelected"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="center"
+            android:id="@+id/prefencesubmit"/>
+    </LinearLayout>
+
+</ScrollView>

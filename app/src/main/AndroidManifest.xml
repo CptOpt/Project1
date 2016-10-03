@@ -22,55 +22,56 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splashscreen">
+        <activity android:name=".Activities.Splashscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Signin" />
+        <activity android:name=".Fragments.Signin" />
         <activity
-            android:name=".Nextpage"
-            android:parentActivityName=".MainActivity">
+            android:name=".Activities.Nextpage"
+            android:parentActivityName=".Activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Activities.MainActivity" />
         </activity>
-        <activity android:name=".EditDetails" />
-        <activity android:name=".EditAddress" />
-        <activity android:name=".Fab" />
-        <activity android:name=".Feedback" />
-        <activity android:name=".AddProject" />
-        <activity android:name=".Changepassword" />
-        <activity android:name=".Settings" />
-        <activity android:name=".Editprofile1" />
-        <activity android:name=".VisibilitySettings" />
-        <activity android:name=".Communication" />
-        <activity android:name=".ResetPassword" />
-        <activity android:name=".Forgototp" />
+        <activity android:name=".Activities.EditDetails" />
+        <activity android:name=".Activities.EditAddress" />
+        <activity android:name=".Activities.Fab" />
+        <activity android:name=".Activities.Feedback" />
+        <activity android:name=".Activities.AddProject" />
+        <activity android:name=".Activities.Changepassword" />
+        <activity android:name=".Activities.Settings" />
+        <activity android:name=".Activities.Editprofile1" />
+        <activity android:name=".Activities.VisibilitySettings" />
+        <activity android:name=".Activities.Communication" />
+        <activity android:name=".Activities.ResetPassword" />
+        <activity android:name=".Activities.Forgototp" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:label="@string/title_activity_main2"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".RegisterNew"
-            android:parentActivityName=".Registration_SignIn" />
+            android:name=".Activities.RegisterNew"
+            android:parentActivityName=".Activities.Registration_SignIn" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Registration_SignIn" />
+            android:value=".Activities.Registration_SignIn" />
 
         <activity
-            android:name=".Signinnew"
-            android:parentActivityName=".Registration_SignIn" />
+            android:name=".Activities.Signinnew"
+            android:parentActivityName=".Activities.Registration_SignIn" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".Registration_SignIn" />
+            android:value=".Activities.Registration_SignIn" />
+        <activity android:name=".Activities.Registration_SignIn"/>
 
-        <activity android:name=".Registration_SignIn"></activity>
-        <activity android:name=".Otp"></activity>
+        <activity android:name=".Activities.Otp" />
+        <activity android:name=".Activities.MainResume"></activity>
+        <activity android:name=".Activities.JobsDisplay"/>
     </application>
 
 </manifest>
